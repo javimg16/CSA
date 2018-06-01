@@ -8,7 +8,7 @@
     </div>
     <div class="categoria">
         <?php
-            if(!isset($_SESSION['tipo'])) {
+            if(isset($_SESSION['tipo'])) {
                 print($_SESSION['tipo']);
             }
         ?>

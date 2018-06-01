@@ -1,5 +1,5 @@
 <?php
-
+    include 'Conexciones.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -67,5 +67,18 @@ class Personal {
         $this -> funcion = $funcion;
     }
     
+    function create() {
+        try{
+            $conexion = Conexiones::getConexion();
+            $consulta = "INSERTO INTO personal (DNI, Nombre, Apellidos, FecAlta, Funcion) "
+                    . "VALUES (?,?,?,?,?)";
+            $stmt = $conexion ->prepare($consulta);
+            $stmt ->bind_param('sssss', $this->getDni(), $this->getNombre(), 
+                    $this->getApellidos(), $this->getFecAlta(), $this->getFuncion());
+            $stmt ->execute();
+        } catch (Exception $e) {
+            echo "Error al insertar datos en tabla personal".$e ->getMessage();
+        }
+    }
 }
 ?>

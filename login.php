@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!Doctype HTML>
 <html>
     <head>
@@ -5,11 +6,11 @@
     </head>
     <body>
         <?php 
-            session_start();
+            
             if(isset($_SESSION['tipo'])){
                 header('location:index.php');
             }
-            include 'Models/header.php' 
+            include 'Views/header.php' 
         ?>
         <section>
             <form method="post" action="Controllers/comprobar.php">
@@ -36,6 +37,6 @@
                 </fieldset>
             </form>
         </section>
-        <?php include 'Models/footer.php' ?>
+        <?php include 'Views/footer.php' ?>
     </body>
 </html>
