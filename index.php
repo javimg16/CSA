@@ -10,9 +10,14 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-            echo "prueba";
+        <?php 
+            session_start();
+            if(isset($_SESSION['tipo'])){
+                header("location:login.php");
+            }
+            include 'Models/header.php' ;
         ?>
         
+        <?php include 'Models/footer.php' ?>
     </body>
 </html>

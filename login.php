@@ -6,7 +6,7 @@
     <body>
         <?php include 'Models/header.php' ?>
         <section>
-            <form method="post">
+            <form method="post" action="Controllers/comprobar.php">
                 <fieldset>
                     <legend>LOGIN</legend>
                     <div class="imagenes">
@@ -23,7 +23,7 @@
                         </tr>
                         <tr>
                             <td><input type="submit" value="Entrar" /></td>
-                            <td><a href="#">Recuperar Contraseña</a></td>
+                            <td><input type="button" value="Recuperar Contraseña" /></td>
                         </tr>
                     </table>
 

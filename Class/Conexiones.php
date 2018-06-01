@@ -14,8 +14,8 @@
 class Conexiones {
     //put your code here
     private $conexion;
-    
-    
+    private $resultado;
+            
     function __construct() {
         $this -> conexion = new mysqli("localhost", "javi", "javi", "csa");
         if ($this -> conexion -> connect_error){
@@ -26,6 +26,18 @@ class Conexiones {
     
     function desconectar() {
         $this -> conexion -> close();
+    }
+    
+    function comprobar($usuario, $contra){
+        $consulta = "SELECT Administrador FROM gestores WHERE ID = '$usuario' && "
+                . "Password = '$contra'";
+        $this -> resultado = $this -> conexion ->query($consulta);
+        if ($this -> resultado -> num_rows != 0) {
+            $tipo = $this -> resultado -> fetch_array();
+            return $tipo[0];
+        } else {
+            return false;
+        }
     }
 }
 ?>
