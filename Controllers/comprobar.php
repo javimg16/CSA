@@ -16,11 +16,11 @@
     if($tipo == 1) {
         $_SESSION['tipo'] = "administrador";
         print($_SESSION['tipo']);
-        //header('location:../index.php');
-    } else if ($tipo == 0) {
+        header('location:../index.php');
+    } else if ($tipo == 2) {
         $_SESSION['tipo'] = "usuario";
         print($_SESSION['tipo']);
-        //header('location:../index.php');
+        header('location:../index.php');
     } else {
         print 'El usuario o la contraseña no son correctas, intentelo de nuevo';
     }

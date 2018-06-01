@@ -5,14 +5,15 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
+    <?php session_start();?>
     <head>
         <meta charset="UTF-8">
         <title></title>
     </head>
     <body>
         <?php 
-            session_start();
-            if(isset($_SESSION['tipo'])){
+            
+            if(!isset($_SESSION['tipo'])){
                 header("location:login.php");
             }
             include 'Models/header.php' ;

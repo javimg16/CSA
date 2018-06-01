@@ -4,7 +4,13 @@
         
     </head>
     <body>
-        <?php include 'Models/header.php' ?>
+        <?php 
+            session_start();
+            if(isset($_SESSION['tipo'])){
+                header('location:index.php');
+            }
+            include 'Models/header.php' 
+        ?>
         <section>
             <form method="post" action="Controllers/comprobar.php">
                 <fieldset>
