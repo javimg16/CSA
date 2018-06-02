@@ -13,13 +13,23 @@ and open the template in the editor.
     </head>
     <body>
         <?php 
-            
-            if(!isset($_SESSION['tipo'])){
-                header("location:login.php");
-            }
-            include 'Views/header.php' ;
-        ?>
+            /* HEADER */
+            include 'Views/header.php';
         
-        <?php include 'Views/footer.php' ?>
+            /* SECTION */
+            /* login */
+            if(!isset($_SESSION['tipo'])){
+                include 'Views/Sections/login.php';
+                if(isset($_REQUEST['accion'])){
+                    include 'Controllers/comprobar.php';
+                }
+            /* gestores */    
+            } else {
+                
+            }
+            
+            /* FOOTER */
+            include 'Views/footer.php';
+        ?>
     </body>
 </html>
