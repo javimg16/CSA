@@ -15,24 +15,20 @@
             <hr>
         </header>
         <section>
-                <form method="post" action="index.php?login">
+                <form method="post" action="?login">
                     <fieldset>
-                        <legend>LOGIN</legend>
+                        <legend>Recuperación de Contraseña</legend>
                         <div class="imagenes">
                             <!-- Capa para el carrusel de imagenes -->
                         </div>
                         <table>
                             <tr>
-                                <td><label for="usuario">USUARIO:</label></td>
-                                <td><input type="text" name="usuario" /></td>
+                                <td><label for="correo">e-Mail:</label></td>
+                                <td><input type="text" name="correo" /></td>
                             </tr>
                             <tr>
-                                <td><label for="contra">CONTRASEÑA:</label></td>
-                                <td><input type="password" name="contra" /></td>
-                            </tr>
-                            <tr>
-                                <td><input type="submit" value="Entrar" /></td>
-                                <td><a href="?recuperar">Recuperar Contraseña</a></td>
+                                <td><input type="submit" value="Enviar Contraseña" /></td>
+                                <td><a href="index.php">Volver</a></td>
                             </tr>
                         </table>
                     </fieldset>
