@@ -12,8 +12,54 @@ body {
     background-color: #ffffbf;
 }
 
-ul.menu li a {
-    display:block;
-    float:left;
-    padding:0 10px;
+.menu {
+    width: 60em;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.menu ul {
+    display: flex;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+}
+.menu a {
+    display: block;
+    padding: 10pt;
+    background-color: #F9B53C;
+    text-decoration: none;
+    color: #191C26;
+}
+
+.menu li {
+    width: 15em;
+}
+
+.menu a:hover {
+    background-color: #CC673B;
+}
+.menu ul li ul {
+    display: none;
+}
+.menu ul li a:hover + ul, .menu ul li ul:hover {
+    display: block;
+    position: fixed;
+}
+
+
+section {
+    height: 24em;
+    width: 1000pt;
+    display: table;
+}
+
+.inicio {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+footer{
+    clear: both;
 }
