@@ -1,9 +1,9 @@
 <?php
 
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Comprueba que existe el usuario en la BBDD
+ * Si existe guarda en la variable sesión si es usuario o administrador
+ * y vuelve al index
  */
 
     include 'Models/Conexiones.php';

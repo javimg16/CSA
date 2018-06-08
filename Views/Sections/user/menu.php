@@ -2,13 +2,13 @@
     <ul>
         <li><a href="#">Personal</a>
             <ul>
-                <li><a href="#">Alta</a></li>
+                <li><a href="index.php?altapersonal">Alta</a></li>
                 <li><a href="#">Busqueda</a></li>
             </ul>
         </li>
         <li><a href="#">Vuelos</a>
             <ul>
-                <li><a href="#">Alta</a></li>
+                <li><a href="index.php?altavuelo">Alta</a></li>
                 <li><a href="#">Busqueda</a></li>
             </ul>
         </li>

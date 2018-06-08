@@ -73,11 +73,22 @@ class Personal {
             $consulta = "INSERTO INTO personal (DNI, Nombre, Apellidos, FecAlta, Funcion) "
                     . "VALUES (?,?,?,?,?)";
             $stmt = $conexion ->prepare($consulta);
-            $stmt ->bind_param('sssss', $this->getDni(), $this->getNombre(), 
-                    $this->getApellidos(), $this->getFecAlta(), $this->getFuncion());
+            $stmt -> bind_param('sssss', $this->getDni(), $this-> getNombre(), 
+                    $this->getApellidos(), $this->getFecAlta(), $this-> getFuncion());
             $stmt ->execute();
         } catch (Exception $e) {
-            echo "Error al insertar datos en tabla personal".$e ->getMessage();
+            echo "Error al insertar datos en tabla personal".$e -> getMessage();
+        }
+    }
+    
+    function retrieve($dni){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "SELECT * FROM personal";
+            $stmt = $conexion -> prepare($consulta);
+            
+        } catch (Exception $ex) {
+            echo "Error al cargar los datos de la tabla personal".$ex ->getMessage();
         }
     }
 }
