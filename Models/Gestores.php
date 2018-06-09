@@ -50,17 +50,12 @@ class Gestores {
     function createAdmin(){
         try {
             $conexion = Conexiones::getConexion();
-            echo 'createAdmin prueba 1';
             $consulta = "INSERT INTO gestores (ID, Password, Administrador, Correo) "
                     . "VALUES (?, ?, ?, ?)";
-            echo 'createAdmin prueba 2';
             $stmt = $conexion -> prepare($consulta);
-            echo 'createAdmin prueba 3';
             $stmt -> bind_param('ssss', $this -> getId(), $this -> getPassword(), 
                     $this -> getAdministrador(), $this -> getCorreo());
-            echo 'createAdmin prueba 4';
             $stmt -> execute();
-            echo 'createAdmin prueba 5';
         } catch (Exception $e) {
             echo "Error al insertar datos en tabla gestores".$e -> getMessage();
         }
