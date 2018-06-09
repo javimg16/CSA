@@ -72,7 +72,7 @@ class Personal {
             $conexion = Conexiones::getConexion();
             $consulta = "INSERTO INTO personal (DNI, Nombre, Apellidos, FecAlta, Funcion) "
                     . "VALUES (?,?,?,?,?)";
-            $stmt = $conexion ->prepare($consulta);
+            $stmt = $conexion -> prepare($consulta);
             $stmt -> bind_param('sssss', $this->getDni(), $this-> getNombre(), 
                     $this->getApellidos(), $this->getFecAlta(), $this-> getFuncion());
             $stmt ->execute();

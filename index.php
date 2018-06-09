@@ -18,6 +18,9 @@
               include 'Views/Sections/admin/menu.php';
             if (isset($_REQUEST['altaadmin'])){
                 include 'Views/Sections/admin/administradores/alta.php';
+                if($_REQUEST['altaadmin'] == 'datos'){
+                    include 'Controllers/admin/administradores/alta.php';
+                }
             } elseif(isset($_REQUEST['altauser'])) {
                 include 'Views/Sections/admin/usuarios/alta.php';
             } elseif (isset($_REQUEST['altahelos'])){

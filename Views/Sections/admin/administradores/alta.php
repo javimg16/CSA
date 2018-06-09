@@ -1,5 +1,5 @@
 <section>
-    <form>
+    <form method="post" action="index.php?altaadmin=datos">
         <fieldset>
             <legend>Alta Nuevo Administrador</legend>
             <table>
@@ -11,7 +11,7 @@
                 </tr>
                 <tr>
                     <td><label for="correo">Correo</label></td>
-                    <td colspan="3"><input type="text"/></td>
+                    <td colspan="3"><input type="text" name="correo" size="60"/></td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="Dar de alta"/></td>
