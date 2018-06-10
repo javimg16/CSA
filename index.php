@@ -35,8 +35,13 @@ else {
             include 'Views/Sections/admin/usuarios/alta.php';
             if ($_REQUEST['altauser'] == 'datos') {
                 require 'Controllers/admin/usuarios/alta.php';
-            }
-        } elseif (isset($_REQUEST['altahelos'])) {
+            } 
+        } elseif (isset ($_REQUEST['busquedauser'])) {
+            include 'Views/Sections/admin/usuarios/busqueda.php';
+        }
+        
+        /* helicopteros */
+        elseif (isset($_REQUEST['altahelos'])) {
             include 'Views/Sections/admin/helicopteros/alta.php';
         } else {
             include 'Views/Sections/portada.php';

@@ -9,7 +9,7 @@
         <li><a href="">Usuarios</a>
             <ul>
                 <li><a href="index.php?altauser">Alta</a></li>
-                <li><a href="#">Busqueda</a></li>
+                <li><a href="index.php?busquedauser">Busqueda</a></li>
             </ul>
         </li>
         <li><a href="">Helicópteros</a>
