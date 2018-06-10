@@ -87,8 +87,8 @@ class Personal {
             $consulta = "SELECT * FROM personal";
             $stmt = $conexion -> prepare($consulta);
             
-        } catch (Exception $ex) {
-            echo "Error al cargar los datos de la tabla personal".$ex ->getMessage();
+        } catch (Exception $e) {
+            echo "Error al cargar los datos de la tabla personal".$e -> getMessage();
         }
     }
 }

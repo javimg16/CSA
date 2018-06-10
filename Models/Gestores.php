@@ -51,9 +51,41 @@ class Gestores {
         try {
             $conexion = Conexiones::getConexion();
             $consulta = "INSERT INTO gestores (ID, Password, Administrador, Correo) "
-                    . "VALUES (?, ?, ?, ?)";
+                    . "VALUES (?,?,?,?)";
             $stmt = $conexion -> prepare($consulta);
-            $stmt -> bind_param('ssss', $this -> getId(), $this -> getPassword(), 
+            $stmt -> bind_param('ssis', $this -> getId(), $this -> getPassword(), 
+                    $this -> getAdministrador(), $this -> getCorreo());
+            $stmt -> execute();
+        } catch (Exception $e) {
+            echo "Error al insertar datos en tabla gestores".$e -> getMessage();
+        }
+    }
+    
+    static function retriveAdmin($id){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "SELECT Password, Administrador, Correo "
+                    . "FROM gestores WHERE ID LIKE ?";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt ->bind_param('s', $id);
+            $resultado = $stmt -> execute();
+            $envio = $resultado -> fetch_array();
+            return $envio;
+        } catch (Exception $e) {
+
+        }
+    }
+    
+    
+    
+    
+    function createUser(){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "INSERT INTO gestores (ID, Password, Administrador, Correo) "
+                    . "VALUES (?,?,?,?)";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt -> bind_param('ssis', $this -> getId(), $this -> getPassword(), 
                     $this -> getAdministrador(), $this -> getCorreo());
             $stmt -> execute();
         } catch (Exception $e) {

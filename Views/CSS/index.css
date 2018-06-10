@@ -55,13 +55,28 @@ section {
     display: table;
 }
 
-.inicio {
+.portada {
     display: table-cell;
     vertical-align: middle;
     font-size: 64pt;
     text-align: center;
 }
 
+form {
+    width: 500pt;
+    margin: 40pt auto;
+}
+.busqueda{
+    width: 500pt;
+    margin: 40pt auto;
+}
+
+
+#inicio {
+    text-align: right;
+}
+
 footer{
     clear: both;
 }
+

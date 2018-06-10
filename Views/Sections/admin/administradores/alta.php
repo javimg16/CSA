@@ -6,7 +6,7 @@
                 <tr>
                     <td><label for="administrador">Administrador</label></td>
                     <td><input type="text" name="administrador"/></td>
-                    <td><label for="contra">Contraseña </label></td>
+                    <td><label for="contra">Contraseña</label></td>
                     <td><input type="password" name="contra"/></td>
                 </tr>
                 <tr>
@@ -19,5 +19,7 @@
             </table>
         </fieldset>
     </form>
-    <a href="index.php">Inicio</a>
+    <div id="inicio">
+        <a href="index.php">Inicio</a>
+    </div>
 </section>
