@@ -19,6 +19,7 @@
         $_SESSION['tipo'] = "@usuario";
         header('location:index.php');
     } else {
+        //Hay que redirigirlo a una pagina solo HTML
         print 'El usuario o la contraseña no son correctas, intentelo de nuevo';
     }
 

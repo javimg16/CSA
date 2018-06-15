@@ -1,6 +1,6 @@
 <?php
 
-include 'Models\Conexiones.php';
+include 'Conexiones.php';
 
 class Gestores {
     private $id;
@@ -53,8 +53,11 @@ class Gestores {
             $consulta = "INSERT INTO gestores (ID, Password, Administrador, Correo) "
                     . "VALUES (?,?,?,?)";
             $stmt = $conexion -> prepare($consulta);
-            $stmt -> bind_param('ssis', $this -> getId(), $this -> getPassword(), 
-                    $this -> getAdministrador(), $this -> getCorreo());
+            $id = $this -> getId();
+            $pass = $this -> getPassword();
+            $tipo = $this -> getAdministrador();
+            $email = $this -> getCorreo();
+            $stmt -> bind_param('ssis', $id, $pass, $tipo, $email);
             $stmt -> execute();
         } catch (Exception $e) {
             echo "Error al insertar datos en tabla gestores".$e -> getMessage();
@@ -68,11 +71,12 @@ class Gestores {
                     . "FROM gestores WHERE ID LIKE ?";
             $stmt = $conexion -> prepare($consulta);
             $stmt ->bind_param('s', $id);
-            $resultado = $stmt -> execute();
+            $stmt -> execute();
+            $resultado = $stmt->get_result();
             $envio = $resultado -> fetch_array();
             return $envio;
         } catch (Exception $e) {
-
+            echo $e;
         }
     }
     
@@ -85,8 +89,11 @@ class Gestores {
             $consulta = "INSERT INTO gestores (ID, Password, Administrador, Correo) "
                     . "VALUES (?,?,?,?)";
             $stmt = $conexion -> prepare($consulta);
-            $stmt -> bind_param('ssis', $this -> getId(), $this -> getPassword(), 
-                    $this -> getAdministrador(), $this -> getCorreo());
+            $id = $this -> getId();
+            $pass = $this -> getPassword();
+            $tipo = $this -> getAdministrador();
+            $email = $this -> getCorreo();
+            $stmt -> bind_param('ssis', $id, $pass, $tipo, $email);
             $stmt -> execute();
         } catch (Exception $e) {
             echo "Error al insertar datos en tabla gestores".$e -> getMessage();

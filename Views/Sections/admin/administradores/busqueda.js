@@ -16,29 +16,32 @@ var conexion;
         conexion.onreadystatechange = respuesta;
         conexion.open("POST", "Controllers/admin/administradores/busqueda.php");
         conexion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        console.log(document.getElementById("id").value);
         conexion.send("id="+document.getElementById("id").value); 
     }
     function respuesta(){
         if(conexion.readyState == 4){
             if(conexion.status == 200){
                 recibeDatos(conexion.responseText);
+                
             }
         }
     }
     
-    function recibeDatos(datos){
+    function recibeDatos(jdatos){
+        console.log(jdatos);
+        datos = JSON.parse(jdatos);
         if(!resultado.hasChildNodes()){
-            formulario();
+            formulario(datos);
         } else {
             var fieldset = document.getElementById("fieldset");
             var padre = fieldset.parentNode;
             padre.removeChild(fieldset);
-            formulario();
+            formulario(datos);
+            
         }
     }
     
-    function formulario(){
+    function formulario(datos){
         var fieldset = document.createElement("fieldset");
         fieldset.setAttribute("id", "fieldset");
         var legend = document.createElement("legend");
@@ -49,7 +52,7 @@ var conexion;
         var celda11 = document.createElement("td");
         celda11.innerHTML = "<label>Administrador</label>";
         var celda12 = document.createElement("td");
-        celda12.innerHTML = "<input type=\"text\" name=\"administrador\" />";
+        celda12.innerHTML = "<input type=\"text\" name=\"administrador\" value=\""+datos[0]+"\" />";
         var celda13 = document.createElement("td");
         celda13.innerHTML = "<label>Contraseña</label>";
         var celda14 = document.createElement("td");
@@ -78,6 +81,7 @@ var conexion;
         tabla.appendChild(fila1);
         tabla.appendChild(fila2);
         tabla.appendChild(fila3);
+        
     }
     
     window.onload = function(){
