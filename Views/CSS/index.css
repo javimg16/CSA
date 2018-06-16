@@ -71,6 +71,19 @@ form {
     margin: 40pt auto;
 }
 
+#resultado {
+    visibility: hidden;
+}
+
+#mensaje {
+    visibility: hidden;
+    border: 5px solid red;
+    z-index: 1;
+    width: 150pt;
+    margin: -150pt auto;
+    text-align: center;
+    background-color: grey;
+}
 
 #inicio {
     text-align: right;

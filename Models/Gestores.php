@@ -67,7 +67,7 @@ class Gestores {
     static function retriveAdmin($id){
         try {
             $conexion = Conexiones::getConexion();
-            $consulta = "SELECT Password, Administrador, Correo "
+            $consulta = "SELECT ID, Password, Administrador, Correo "
                     . "FROM gestores WHERE ID LIKE ?";
             $stmt = $conexion -> prepare($consulta);
             $stmt ->bind_param('s', $id);
