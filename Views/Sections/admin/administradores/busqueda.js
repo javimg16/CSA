@@ -8,8 +8,6 @@
 var conexion;
     /* Petición AJAX */
     function peticion(){
-        document.getElementById("resultado").style.visibility = "visible";
-        
         if(window.XMLHttpRequest){
            conexion = new XMLHttpRequest();
         } else {
@@ -30,7 +28,6 @@ var conexion;
     }
     
     function recibeDatos(jdatos){
-        console.log(jdatos);
         datos = JSON.parse(jdatos);
         console.log(datos);
         formulario(datos);
@@ -38,6 +35,7 @@ var conexion;
     
     function formulario(datos){
         if(datos != null){
+            document.getElementById("resultado").style.visibility = "visible";
             document.getElementById("administrador").value = datos.ID;
             document.getElementById("contra").value = datos.Password;
             document.getElementById("correo").value = datos.Correo;
@@ -65,12 +63,15 @@ var conexion;
                                     document.getElementById("resultado").style.visibility = "hidden";
                                     document.getElementById("mensaje").style.visibility = "hidden";
                                     document.getElementById("resulOk").style.visibility = "visible";
+                                    document.getElementById("id").value = null;
                                 }  
                             }
                         }
                     }
                 }
             }
+        } else {
+            document.getElementById("resultado").style.visibility = "hidden";
         }
     }
     
