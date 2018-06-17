@@ -4,6 +4,9 @@
         <input type="text" id="id"/>
         <input type="button" value="Buscar" id="buscar" />
     </div>
+    <div id="resulOk">
+        <a>El Administrador ha sido eliminado con éxito</a>
+    </div>
     <form id="resultado">
         <fieldset>
             <legend>Resultado Busqueda Administradores</legend>

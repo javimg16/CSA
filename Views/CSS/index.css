@@ -75,6 +75,10 @@ form {
     visibility: hidden;
 }
 
+#resulOk {
+    visibility: hidden;
+}
+
 #mensaje {
     visibility: hidden;
     border: 5px solid red;

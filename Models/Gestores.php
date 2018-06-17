@@ -70,9 +70,9 @@ class Gestores {
             $consulta = "SELECT ID, Password, Administrador, Correo "
                     . "FROM gestores WHERE ID LIKE ?";
             $stmt = $conexion -> prepare($consulta);
-            $stmt ->bind_param('s', $id);
+            $stmt -> bind_param('s', $id);
             $stmt -> execute();
-            $resultado = $stmt->get_result();
+            $resultado = $stmt ->get_result();
             $envio = $resultado -> fetch_array();
             return $envio;
         } catch (Exception $e) {
@@ -80,7 +80,21 @@ class Gestores {
         }
     }
     
-    
+    static function deleteAdmin($id){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "DELETE FROM gestores WHERE ID LIKE ?";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt ->bind_param('s', $id);
+            if($stmt -> execute()){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $x) {
+            echo $e;
+        }
+    }
     
     
     function createUser(){
