@@ -47,7 +47,7 @@ class Gestores {
         $this->correo = $correo;
     }
 
-    function createAdmin(){
+    function create(){
         try {
             $conexion = Conexiones::getConexion();
             $consulta = "INSERT INTO gestores (ID, Password, Administrador, Correo) "
@@ -64,13 +64,13 @@ class Gestores {
         }
     }
     
-    static function retriveAdmin($id){
+    static function retrive($id, $tipo){
         try {
             $conexion = Conexiones::getConexion();
             $consulta = "SELECT ID, Password, Administrador, Correo "
-                    . "FROM gestores WHERE ID LIKE ?";
+                    . "FROM gestores WHERE ID LIKE ? AND Administrador LIKE ?";
             $stmt = $conexion -> prepare($consulta);
-            $stmt -> bind_param('s', $id);
+            $stmt -> bind_param('si', $id, $tipo);
             $stmt -> execute();
             $resultado = $stmt ->get_result();
             $envio = $resultado -> fetch_array();
@@ -80,7 +80,7 @@ class Gestores {
         }
     }
     
-    static function deleteAdmin($id){
+    static function delete($id){
         try {
             $conexion = Conexiones::getConexion();
             $consulta = "DELETE FROM gestores WHERE ID LIKE ?";
@@ -95,6 +95,26 @@ class Gestores {
             echo $e;
         }
     }
+    
+    static function update($id, $contra, $tipo, $correo){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "UPDATE gestores SET ID = ?, Password = ?, Administrador = ?, "
+                    . "Correo = ? WHERE ID = ?";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt -> bind_param('ssiss', $id, $contra, $tipo, $correo, $id);
+            if($stmt -> execute()){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+    } 
+            
+    
+    
     
     
     function createUser(){

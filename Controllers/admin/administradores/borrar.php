@@ -3,8 +3,7 @@
     
     $id = ($_REQUEST['id']);
     
-    $realizado = Gestores::deleteAdmin($id);
+    $realizado = Gestores::delete($id);
     
     echo $realizado;
-    
 ?>

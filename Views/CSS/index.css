@@ -75,11 +75,7 @@ form {
     visibility: hidden;
 }
 
-#resulOk {
-    visibility: hidden;
-}
-
-#mensaje {
+#mensajeEliminar, #mensajeModificar {
     visibility: hidden;
     border: 5px solid red;
     z-index: 1;

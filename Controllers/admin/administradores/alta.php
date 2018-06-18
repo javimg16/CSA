@@ -7,6 +7,6 @@
     include 'Models/Gestores.php';
     $gestor = new Gestores($administrador, $contra, 1, $correo);
     
-    $gestor -> createAdmin();
+    $gestor -> create();
     
 ?>
