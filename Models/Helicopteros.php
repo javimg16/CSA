@@ -1,16 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of Helicopteros
- *
- * @author Javi
- */
 class Helicopteros {
     //put your code here
     private $matricula;
@@ -19,11 +8,10 @@ class Helicopteros {
     private $fecBaja;
     private $modelo;
     
-    function __construct($matricula, $simulador, $fecAlta, $fecBaja, $modelo) {
+    function __construct($matricula, $simulador, $fecAlta, $modelo) {
         $this -> matricula = $matricula;
         $this -> simulador = $simulador;
         $this -> fecAlta = $fecAlta;
-        $this -> fecBaja = $fecBaja;
         $this -> modelo = $modelo;
     }
 
@@ -67,8 +55,36 @@ class Helicopteros {
         $this -> modelo = $modelo;
     }
 
-
+    function create(){
+        try {
+            $conexiones = Conexiones::getConexion();
+            $consulta = "INSERT INTO helicopteros (Matricula, Simulador, FecAlta, "
+                    . "Modelo) VALUES (?, ?, ?, ?)";
+            $stmt = $conexiones -> prepare($consulta);
+            $matricula = $this -> getMatricula();
+            $simulador = $this -> getSimulador();
+            $fecAlta = $this -> getFecAlta();
+            $modelo = $this -> getModelo();
+            $stmt ->bind_param('siss', $matricula, $simulador, $fecAlta, $modelo);
+            if($stmt -> execute())
+                return true;
+            else
+                return false;
+        } catch (Exception $e) {
+            echo $e;
+        }
+    }
     
+    function update(){
+        
+    }
     
+    function retrive(){
+        
+    }
+    
+    function delete(){
+        
+    }
 }
 ?>

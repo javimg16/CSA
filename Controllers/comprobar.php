@@ -5,8 +5,6 @@
  * Si existe guarda en la variable sesión si es usuario o administrador
  * y vuelve al index
  */
-
-    include 'Models/Conexiones.php';
    
     $usuario = $_REQUEST['usuario'];
     $contra = $_REQUEST['contra'];

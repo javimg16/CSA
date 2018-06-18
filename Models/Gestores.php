@@ -1,7 +1,5 @@
 <?php
 
-include 'Conexiones.php';
-
 class Gestores {
     private $id;
     private $password;
@@ -47,18 +45,21 @@ class Gestores {
         $this->correo = $correo;
     }
 
-    function create(){
+    static function create($id, $contra, $tipo, $correo){
         try {
             $conexion = Conexiones::getConexion();
             $consulta = "INSERT INTO gestores (ID, Password, Administrador, Correo) "
                     . "VALUES (?,?,?,?)";
             $stmt = $conexion -> prepare($consulta);
-            $id = $this -> getId();
-            $pass = $this -> getPassword();
-            $tipo = $this -> getAdministrador();
-            $email = $this -> getCorreo();
-            $stmt -> bind_param('ssis', $id, $pass, $tipo, $email);
-            $stmt -> execute();
+//            $id = $this -> getId();
+//            $pass = $this -> getPassword();
+//            $tipo = $this -> getAdministrador();
+//            $email = $this -> getCorreo();
+            $stmt -> bind_param('ssis', $id, $contra, $tipo, $correo);
+            if($stmt -> execute())
+                return true;
+             else
+                return false;
         } catch (Exception $e) {
             echo "Error al insertar datos en tabla gestores".$e -> getMessage();
         }

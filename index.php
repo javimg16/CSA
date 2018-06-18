@@ -2,6 +2,8 @@
 
 session_start();
 
+include 'Models/autoload.php';
+
 /* L O G I N */
 if (!isset($_SESSION['tipo'])) {
     if (isset($_REQUEST['recuperar'])) {
@@ -43,7 +45,16 @@ else {
         /* helicopteros */
         elseif (isset($_REQUEST['altahelos'])) {
             include 'Views/Sections/admin/helicopteros/alta.php';
-        } else {
+            if ($_REQUEST['altahelos'] == 'datos') {
+                require 'Controllers/admin/helos/alta.php';
+            }
+        } else if (isset ($_REQUEST['busquedahelos'])){
+            include 'Views/Sections/admin/helicopteros/busqueda.php';
+        }
+        
+        
+        /* PORTADA */
+        else {
             include 'Views/Sections/portada.php';
         }
     }

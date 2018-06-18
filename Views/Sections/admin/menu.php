@@ -15,7 +15,7 @@
         <li><a href="">Helicópteros</a>
             <ul>
                 <li><a href="index.php?altahelos">Alta</a></li>
-                <li><a href="">Busqueda</a></li>
+                <li><a href="index.php?busquedahelos">Busqueda</a></li>
             </ul>
         </li>
         <li><a href="">Cursos</a></li>

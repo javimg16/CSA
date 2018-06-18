@@ -4,8 +4,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/CSA/Models/autoload.php';
 
 $id = ($_REQUEST['id']);
 
-$envio = Gestores::retrive($id, 1);
+$heli = new Helicopteros($id);
 
-echo json_encode($envio);
-        
+echo $heli;
+
 ?>
