@@ -79,7 +79,8 @@ var conexion;
                     conexion.onreadystatechange = respuestaModificacion;
                     conexion.open("POST", "Controllers/admin/administradores/modificar.php");
                     conexion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    conexion.send("id=" + document.getElementById("administrador").value +
+                    conexion.send("id=" + document.getElementById("id").value +
+                            "&administrador=" + document.getElementById("administrador").value +
                             "&contra=" + document.getElementById("contra").value +
                             "&tipo=1" +
                             "&correo="+ document.getElementById("correo").value);

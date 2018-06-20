@@ -1,60 +1,13 @@
 <?php
 
 class Gestores {
-    private $id;
-    private $password;
-    private $administrador;
-    private $correo;
     
-    function __construct($id, $password, $administrador, $correo) {
-        $this->id = $id;
-        $this->password = $password;
-        $this -> administrador = $administrador;
-        $this->correo = $correo;
-    }
-
-    function getId() {
-        return $this->id;
-    }
-
-    function getPassword() {
-        return $this->password;
-    }
-
-    function getAdministrador() {
-        return $this->administrador;
-    }
-
-    function getCorreo() {
-        return $this->correo;
-    }
-
-    function setId($id) {
-        $this->id = $id;
-    }
-
-    function setPassword($password) {
-        $this->password = $password;
-    }
-
-    function setAdministrador($administrador) {
-        $this->administrador = $administrador;
-    }
-
-    function setCorreo($correo) {
-        $this->correo = $correo;
-    }
-
     static function create($id, $contra, $tipo, $correo){
         try {
             $conexion = Conexiones::getConexion();
             $consulta = "INSERT INTO gestores (ID, Password, Administrador, Correo) "
                     . "VALUES (?,?,?,?)";
             $stmt = $conexion -> prepare($consulta);
-//            $id = $this -> getId();
-//            $pass = $this -> getPassword();
-//            $tipo = $this -> getAdministrador();
-//            $email = $this -> getCorreo();
             $stmt -> bind_param('ssis', $id, $contra, $tipo, $correo);
             if($stmt -> execute())
                 return true;
@@ -73,9 +26,26 @@ class Gestores {
             $stmt = $conexion -> prepare($consulta);
             $stmt -> bind_param('si', $id, $tipo);
             $stmt -> execute();
-            $resultado = $stmt ->get_result();
+            $resultado = $stmt -> get_result();
             $envio = $resultado -> fetch_array();
             return $envio;
+        } catch (Exception $e) {
+            echo $e;
+        }
+    }
+    
+    static function update($id, $administrador, $contra, $tipo, $correo){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "UPDATE gestores SET ID = ?, Password = ?, Administrador = ?, "
+                    . "Correo = ? WHERE ID = ?";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt -> bind_param('ssiss', $administrador, $contra, $tipo, $correo, $id);
+            if($stmt -> execute()){
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception $e) {
             echo $e;
         }
@@ -92,46 +62,8 @@ class Gestores {
             } else {
                 return false;
             }
-        } catch (Exception $x) {
-            echo $e;
-        }
-    }
-    
-    static function update($id, $contra, $tipo, $correo){
-        try {
-            $conexion = Conexiones::getConexion();
-            $consulta = "UPDATE gestores SET ID = ?, Password = ?, Administrador = ?, "
-                    . "Correo = ? WHERE ID = ?";
-            $stmt = $conexion -> prepare($consulta);
-            $stmt -> bind_param('ssiss', $id, $contra, $tipo, $correo, $id);
-            if($stmt -> execute()){
-                return true;
-            } else {
-                return false;
-            }
         } catch (Exception $e) {
             echo $e;
-        }
-    } 
-            
-    
-    
-    
-    
-    function createUser(){
-        try {
-            $conexion = Conexiones::getConexion();
-            $consulta = "INSERT INTO gestores (ID, Password, Administrador, Correo) "
-                    . "VALUES (?,?,?,?)";
-            $stmt = $conexion -> prepare($consulta);
-            $id = $this -> getId();
-            $pass = $this -> getPassword();
-            $tipo = $this -> getAdministrador();
-            $email = $this -> getCorreo();
-            $stmt -> bind_param('ssis', $id, $pass, $tipo, $email);
-            $stmt -> execute();
-        } catch (Exception $e) {
-            echo "Error al insertar datos en tabla gestores".$e -> getMessage();
         }
     }
     

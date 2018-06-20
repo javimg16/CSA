@@ -21,7 +21,11 @@ var conexion;
     }
     
     function recibeDatos(jdatos){
+        console.log("entra 1");
+        console.log(jdatos);
         datos = JSON.parse(jdatos);
+        console.log("entra 2");
+        console.log(datos);
         busqueda(datos);
     }
     
@@ -29,11 +33,12 @@ var conexion;
         if(datos != null){
             document.getElementById("resulOk").innerHTML = "";
             document.getElementById("resultado").style.visibility = "visible";
-            document.getElementById("administrador").value = datos.ID;
-            document.getElementById("contra").value = datos.Password;
-            document.getElementById("correo").value = datos.Correo;
+            document.getElementById("matricula").value = datos.matricula;
+            document.getElementById("modelo").value = datos.modelo;
+            document.getElementById("fecAlta").value = datos.fecAlta;
+            document.getElementById("fecBaja").value = datos.fecBaja;
             // PARA ELIMINAR
-            document.getElementById("eliminar").onclick = function(){
+            document.getElementById("baja").onclick = function(){
                 document.getElementById("mensajeEliminar").style.visibility = "visible";
                 document.getElementById("noEliminar").onclick = function(){
                     document.getElementById("mensajeEliminar").style.visibility = "hidden";
@@ -45,7 +50,7 @@ var conexion;
                         conexion = new ActiveXObject("Microsoft.XMLTHHP");
                     }
                     conexion.onreadystatechange = respuestaBorrado;
-                    conexion.open("POST", "Controllers/admin/administradores/borrar.php");
+                    conexion.open("POST", "Controllers/admin/helos/borrar.php");
                     conexion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     conexion.send("id="+document.getElementById("administrador").value);
                     
@@ -64,45 +69,6 @@ var conexion;
                     }
                 }
             }
-            // PARA MODIFICAR
-            document.getElementById("modificar").onclick = function() {
-                document.getElementById("mensajeModificar").style.visibility = "visible";
-                document.getElementById("noModificar").onclick = function(){
-                    document.getElementById("mensajeModificar").style.visibility = "hidden";
-                }
-                document.getElementById("siModificar").onclick = function() {
-                    if(window.XMLHttpRequest){
-                        conexion = new XMLHttpRequest();
-                    } else {
-                        conexion = new ActiveXObject("Microsoft.XMLTHHP");
-                    }
-                    conexion.onreadystatechange = respuestaModificacion;
-                    conexion.open("POST", "Controllers/admin/administradores/modificar.php");
-                    conexion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    conexion.send("id=" + document.getElementById("administrador").value +
-                            "&contra=" + document.getElementById("contra").value +
-                            "&tipo=1" +
-                            "&correo="+ document.getElementById("correo").value);
-                    
-                    function respuestaModificacion(){
-                        if(conexion.readyState == 4){
-                            if(conexion.status == 200){
-                                if(conexion.responseText == 1){
-                                    console.log(conexion.responseText);
-                                    document.getElementById("resultado").style.visibility = "hidden";
-                                    document.getElementById("mensajeModificar").style.visibility = "hidden";
-                                    document.getElementById("resulOk").innerHTML = "<a>"+
-                                            "El Administrador se ha modificado correctamente</a>";
-                                    document.getElementById("id").value = null;
-                                }  
-                            }
-                        }
-                    }
-                }
-            }
-            
-            
-            
         } else {
             console.log(datos);
             document.getElementById("resultado").style.visibility = "hidden";

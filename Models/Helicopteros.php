@@ -8,11 +8,11 @@ class Helicopteros {
     private $fecBaja;
     private $modelo;
     
-    function __construct($matricula, $simulador, $fecAlta, $modelo) {
+    function __construct($matricula) {
         $this -> matricula = $matricula;
-        $this -> simulador = $simulador;
-        $this -> fecAlta = $fecAlta;
-        $this -> modelo = $modelo;
+//        $this -> simulador = $simulador;
+//        $this -> fecAlta = $fecAlta;
+//        $this -> modelo = $modelo;
     }
 
     function getMatricula() {
@@ -65,26 +65,47 @@ class Helicopteros {
             $simulador = $this -> getSimulador();
             $fecAlta = $this -> getFecAlta();
             $modelo = $this -> getModelo();
-            $stmt ->bind_param('siss', $matricula, $simulador, $fecAlta, $modelo);
+            $stmt -> bind_param('siss', $matricula, $simulador, $fecAlta, $modelo);
             if($stmt -> execute())
                 return true;
             else
                 return false;
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+    }
+    
+    function retrive($matricula){
+        try {
+            $conexiones = Conexiones::getConexion();
+            $consulta = "SELECT Matricula, Simulador, FecAlta, FecBaja, Modelo "
+                    . "FROM Helicopteros WHERE Matricula LIKE ?";
+            $stmt = $conexiones -> prepare($consulta);
+            $stmt -> bind_param('s', $matricula);
+            $stmt -> execute();
+            $resultado = $stmt -> get_result();
+            $envio = $resultado -> fetch_array();
+            return $envio;
         } catch (Exception $e) {
             echo $e;
         }
     }
     
     function update(){
-        
+        try {
+            
+        } catch (Exception $ex) {
+            echo $ex;
+        }
     }
     
-    function retrive(){
-        
-    }
     
     function delete(){
-        
+        try {
+            
+        } catch (Exception $ex) {
+            echo $ex;
+        }
     }
 }
 ?>

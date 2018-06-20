@@ -4,7 +4,7 @@
 
     $id = ($_REQUEST['id']);
     
-    $realizado = Gestores::delete($id);
+    $realizado = Gestores::delete($id, 1);
     
     echo $realizado;
 ?>

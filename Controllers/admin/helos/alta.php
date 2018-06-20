@@ -8,9 +8,12 @@
     else
         $simulador = $_REQUEST['simulador'];
         
-    $heli = new Helicopteros($matricula, $simulador, $fecAlta, $modelo);
+    $heli = new Helicopteros($matricula);
+    
+    $heli -> setModelo($modelo);
+    $heli -> setFecAlta($fecAlta);
+    $heli -> setSimulador($simulador);
     
     $heli -> create();
-
 
 ?>
