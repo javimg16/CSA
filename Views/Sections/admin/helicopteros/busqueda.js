@@ -50,9 +50,10 @@ var conexion;
                         conexion = new ActiveXObject("Microsoft.XMLTHHP");
                     }
                     conexion.onreadystatechange = respuestaBorrado;
-                    conexion.open("POST", "Controllers/admin/helos/borrar.php");
+                    conexion.open("POST", "Controllers/admin/helos/baja.php");
                     conexion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    conexion.send("id="+document.getElementById("administrador").value);
+                    conexion.send("id="+document.getElementById("matricula").value +
+                            "&fecBaja="+document.getElementById("fecBaja").value);
                     
                     function respuestaBorrado(){
                         if(conexion.readyState == 4){
@@ -61,7 +62,7 @@ var conexion;
                                     document.getElementById("resultado").style.visibility = "hidden";
                                     document.getElementById("mensajeEliminar").style.visibility = "hidden";
                                     document.getElementById("resulOk").innerHTML = "<a>"+
-                                            "El Administrador se ha borrado satisfactoriamente</a>";
+                                            "El helicóptero se ha dado de baja satisfactoriamente</a>";
                                     document.getElementById("id").value = null;
                                 }  
                             }
