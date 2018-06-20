@@ -2,11 +2,11 @@
 
 class Helicopteros {
     //put your code here
-    private $matricula;
-    private $simulador;
-    private $fecAlta;
-    private $fecBaja;
-    private $modelo;
+    public $matricula;
+    public $simulador;
+    public $fecAlta;
+    public $fecBaja;
+    public $modelo;
     
     function __construct($matricula) {
         $this -> matricula = $matricula;
@@ -91,9 +91,18 @@ class Helicopteros {
         }
     }
     
-    function update(){
+    function update($matricula, $fecBaja){
         try {
-            
+            $conexiones = Conexiones::getConexion();
+            $consulta = "UPDATE FROM helicopteros SET FecBaja = ? "
+                    . "WHERE Matricula = ?";
+            $stmt = $conexiones -> prepare($consulta);
+            $stmt -> bind_param('ss', $fecBaja, $matricula);
+            if ($stmt -> execute()){
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception $ex) {
             echo $ex;
         }
