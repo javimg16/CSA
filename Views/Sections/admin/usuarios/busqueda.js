@@ -1,7 +1,5 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Se crea una peticion ajax para que muestre los usuarios
  */
 var resultado = document.getElementById("resultado");
 var conexion;

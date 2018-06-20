@@ -24,7 +24,17 @@
                 </tr>
             </table>
         </fieldset>        
-    </form>    
-  
+ <!-- ver si hacer este apartado con jquery -->
+    <div id="mensajeEliminar">
+        <p>¿Está seguro de que desea eliminar?</p>
+        <input type="button" value="NO" id="eliminar"/>
+        <input type="button" value="SI" id="siEliminar"/>
+    </div>   
+    <div id="mensajeModificar">
+        <p>¿Está usted seguro de que desea modificar los datos?</p>
+        <input type="button" value="NO" id="noModificar"/>
+        <input type="button" value="SI" id="siModificar"/>
+    </div>   
+    </form>      
 </section>
 <script type="text/javascript" src="Views/Sections/admin/usuarios/busqueda.js" ></script>
