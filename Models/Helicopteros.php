@@ -91,13 +91,14 @@ class Helicopteros {
         }
     }
     
-    function update($matricula, $fecBaja){
+    function update($matricula, $modelo, $simulador, $fecAlta, $fecBaja){
         try {
             $conexiones = Conexiones::getConexion();
-            $consulta = "UPDATE FROM helicopteros SET FecBaja = ? "
-                    . "WHERE Matricula = ?";
+            $consulta = "UPDATE FROM helicopteros SET Matricula = ?, Simulador = ?, "
+                    . "FecAlta = ?, FecBaja = ?, Modelo = ? WHERE Matricula = ?";
             $stmt = $conexiones -> prepare($consulta);
-            $stmt -> bind_param('ss', $fecBaja, $matricula);
+            $stmt -> bind_param('sissss', $matricula, $simulador, $fecAlta, 
+                    $fecBaja, $modelo, $matricula);
             if ($stmt -> execute()){
                 return true;
             } else {

@@ -18,6 +18,8 @@
                     <td><input type="date" name="fecAlta" id="fecAlta" disabled /></td>
                 </tr>
                 <tr>
+                    <td><label>¿Es un simulador?</label></td>
+                    <td><input type="checkbox" name="simulador" id="simulador" disabled /></td>
                     <td><label>Fecha de Baja</label></td>
                     <td><input type="date" name="fecBaja" id="fecBaja" /></td>
                     <td><input type="button" value="Dar de Baja" id="baja" /></td>
