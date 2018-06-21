@@ -94,7 +94,7 @@ class Helicopteros {
     function update($matricula, $modelo, $simulador, $fecAlta, $fecBaja){
         try {
             $conexiones = Conexiones::getConexion();
-            $consulta = "UPDATE FROM helicopteros SET Matricula = ?, Simulador = ?, "
+            $consulta = "UPDATE helicopteros SET Matricula = ?, Simulador = ?, "
                     . "FecAlta = ?, FecBaja = ?, Modelo = ? WHERE Matricula = ?";
             $stmt = $conexiones -> prepare($consulta);
             $stmt -> bind_param('sissss', $matricula, $simulador, $fecAlta, 
