@@ -15,6 +15,8 @@ if (!isset($_SESSION['tipo'])) {
         }
     }
 } 
+/* F I N   D E   L O G I N */
+
 
 /* G E S T O R E S */
 else {
@@ -22,45 +24,60 @@ else {
     /* ADMIN */
     if ($_SESSION['tipo'] == "@administrador") {
         include 'Views/Sections/admin/menu.php';
-        /* administradores */
-        if (isset($_REQUEST['altaadmin'])) {
-            include 'Views/Sections/admin/administradores/alta.php';
-            if ($_REQUEST['altaadmin'] == 'datos') {
-                require 'Controllers/admin/administradores/alta.php';
-            }
-        } elseif (isset($_REQUEST['busquedaadmin'])) {
-            include 'Views/Sections/admin/administradores/busqueda.php';
-        }
-        
-        /* usuarios */ 
-        elseif (isset($_REQUEST['altauser'])) {
-            include 'Views/Sections/admin/usuarios/alta.php';
-            if ($_REQUEST['altauser'] == 'datos') {
-                require 'Controllers/admin/usuarios/alta.php';
-            } 
-        } elseif (isset ($_REQUEST['busquedauser'])) {
-            include 'Views/Sections/admin/usuarios/busqueda.php';
-        }
-        
-        /* helicopteros */
-        elseif (isset($_REQUEST['altahelos'])) {
-            include 'Views/Sections/admin/helicopteros/alta.php';
-            if ($_REQUEST['altahelos'] == 'datos') {
-                require 'Controllers/admin/helos/alta.php';
-            }
-        } else if (isset ($_REQUEST['busquedahelos'])){
-            include 'Views/Sections/admin/helicopteros/busqueda.php';
-        }
-        
-        
-        /* PORTADA */
-        else {
+        /* portada */
+        if(!isset($_REQUEST['opcion'])) {
             include 'Views/Sections/portada.php';
         }
-    }
-    /* FIN DE ADMIN */
+        else {
+            /* administradores */
+            if($_REQUEST['opcion'] == "admin") {
+                if($_REQUEST['accion'] == 'alta') {
+                    include 'Views/Sections/admin/administradores/alta.php';
+                    if (isset($_REQUEST['datos'])) {
+                        require 'Controllers/admin/administradores/alta.php';
+                    }
+                } elseif ($_REQUEST['accion'] == 'busqueda') {
+                    include 'Views/Sections/admin/administradores/busqueda.php';
+                }
+            } 
+            /* usuarios */ 
+            elseif ($_REQUEST['opcion'] == 'user') {
+                if ($_REQUEST['accion'] == 'alta') {
+                    include 'Views/Sections/admin/usuarios/alta.php';
+                    if (isset($_REQUEST['datos'])) {
+                        require 'Controllers/admin/usuarios/alta.php';
+                    } 
+                } elseif ($_REQUEST['accion'] == 'busqueda') {
+                    include 'Views/Sections/admin/usuarios/busqueda.php';
+                }
+            }
 
-    /* USER */ elseif ($_SESSION['tipo'] == "@usuario") {
+            /* helicopteros */
+            elseif ($_REQUEST['opcion'] == 'helos') {
+                if ($_REQUEST['accion'] == 'alta') {
+                    include 'Views/Sections/admin/helicopteros/alta.php';
+                    if (isset($_REQUEST['datos'])) {
+                        require 'Controllers/admin/helos/alta.php';
+                    }
+                } elseif ($_REQUEST['accion'] == 'busqueda'){
+                    include 'Views/Sections/admin/helicopteros/busqueda.php';
+                }
+            }
+            /* cursos */
+            elseif ($_REQUEST['opcion'] == 'cursos'){
+                if($_REQUEST['accion'] == 'listar'){
+                    
+                } elseif ($_REQUEST['accion'] == 'alta') {
+                    
+                }
+            }
+            
+        /* FIN DE ADMIN */
+    
+        }
+    }
+    /* USER */ 
+    elseif ($_SESSION['tipo'] == "@usuario") {
         include 'Views/Sections/user/menu.php';
         if (isset($_REQUEST['altapersonal'])) {
             include 'Views/Sections/user/personal/alta.php';
@@ -72,6 +89,8 @@ else {
     }
     /* FIN DE USER */
 }
+
+/* F I N   D E   G E S T O R E S */
 
 /* FOOTER */
 include 'Views/footer.php';

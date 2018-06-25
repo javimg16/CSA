@@ -1,5 +1,5 @@
 <section>
-    <form method="post" action="index.php?altauser=datos">
+    <form method="post" action="index.php?opcion=user&accion=alta&datos">
         <fieldset>
              <legend>Alta Nuevo Usuario</legend>
             <table>

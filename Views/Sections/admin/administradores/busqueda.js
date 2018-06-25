@@ -100,10 +100,7 @@ var conexion;
                         }
                     }
                 }
-            }
-            
-            
-            
+            }            
         } else {
             console.log(datos);
             document.getElementById("resultado").style.visibility = "hidden";

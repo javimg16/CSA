@@ -1,5 +1,5 @@
 <section>
-    <form method="post" action="index.php?altaadmin=datos">
+    <form method="post" action="index.php?opcion=admin&accion=alta&datos">
         <fieldset>
             <legend>Alta Nuevo Administrador</legend>
             <table>
