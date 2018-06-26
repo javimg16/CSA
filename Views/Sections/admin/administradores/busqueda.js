@@ -1,113 +1,135 @@
-var conexion;
-    /* Petición AJAX */
-    function peticion(){
-        if(window.XMLHttpRequest){
-           conexion = new XMLHttpRequest();
-        } else {
-            conexion = new ActiveXObject("Microsoft.XMLTHHP");
-        }
-        /* Configuramos el callback para procesar la respuesta y enviamos las peticiones */
-        conexion.onreadystatechange = respuesta;
-        conexion.open("POST", "Controllers/admin/administradores/busqueda.php");
-        conexion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        conexion.send("id="+document.getElementById("id").value); 
-    }
-    function respuesta(){
-        if(conexion.readyState == 4){
-            if(conexion.status == 200){
-                recibeDatos(conexion.responseText);
-            }
-        }
-    }
-    
-    function recibeDatos(jdatos){
-        datos = JSON.parse(jdatos);
-        busqueda(datos);
-    }
-    
-    function busqueda(datos){
-        if(datos != null){
-            document.getElementById("resulOk").innerHTML = "";
-            document.getElementById("resultado").style.visibility = "visible";
-            document.getElementById("administrador").value = datos.ID;
-            document.getElementById("contra").value = datos.Password;
-            document.getElementById("correo").value = datos.Correo;
-            // PARA ELIMINAR
-            document.getElementById("eliminar").onclick = function(){
-                document.getElementById("mensajeEliminar").style.visibility = "visible";
-                document.getElementById("noEliminar").onclick = function(){
-                    document.getElementById("mensajeEliminar").style.visibility = "hidden";
-                }
-                document.getElementById("siEliminar").onclick = function(){
-                    if(window.XMLHttpRequest){
-                        conexion = new XMLHttpRequest();
-                    } else {
-                        conexion = new ActiveXObject("Microsoft.XMLTHHP");
-                    }
-                    conexion.onreadystatechange = respuestaBorrado;
-                    conexion.open("POST", "Controllers/admin/administradores/borrar.php");
-                    conexion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    conexion.send("id="+document.getElementById("administrador").value);
-                    
-                    function respuestaBorrado(){
-                        if(conexion.readyState == 4){
-                            if(conexion.status == 200){
-                                if(conexion.responseText == 1){
-                                    document.getElementById("resultado").style.visibility = "hidden";
-                                    document.getElementById("mensajeEliminar").style.visibility = "hidden";
-                                    document.getElementById("resulOk").innerHTML = "<a>"+
-                                            "El Administrador se ha borrado satisfactoriamente</a>";
-                                    document.getElementById("id").value = null;
-                                }  
-                            }
-                        }
-                    }
+function peticion(){
+    $.ajax({
+        url: "Controllers/admin/administradores/busqueda.php",
+        type: "POST",
+        data: {id: $("#id").val()}
+    }).done(function(response){
+            var datos = jQuery.parseJSON(response);
+            busqueda(datos);
+    }).fail(function(){
+        $("#resulOk").html("Inserta un Administrador válido").attr("title", "Error en la busqueda");
+        $("#resulOk").dialog({
+            modal: true,
+            buttons: {
+                Aceptar: function(){
+                    $(this).dialog("close");
                 }
             }
-            // PARA MODIFICAR
-            document.getElementById("modificar").onclick = function() {
-                document.getElementById("mensajeModificar").style.visibility = "visible";
-                document.getElementById("noModificar").onclick = function(){
-                    document.getElementById("mensajeModificar").style.visibility = "hidden";
-                }
-                document.getElementById("siModificar").onclick = function() {
-                    if(window.XMLHttpRequest){
-                        conexion = new XMLHttpRequest();
-                    } else {
-                        conexion = new ActiveXObject("Microsoft.XMLTHHP");
-                    }
-                    conexion.onreadystatechange = respuestaModificacion;
-                    conexion.open("POST", "Controllers/admin/administradores/modificar.php");
-                    conexion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    conexion.send("id=" + document.getElementById("id").value +
-                            "&administrador=" + document.getElementById("administrador").value +
-                            "&contra=" + document.getElementById("contra").value +
-                            "&tipo=1" +
-                            "&correo="+ document.getElementById("correo").value);
-                    
-                    function respuestaModificacion(){
-                        if(conexion.readyState == 4){
-                            if(conexion.status == 200){
-                                if(conexion.responseText == 1){
-                                    console.log(conexion.responseText);
-                                    document.getElementById("resultado").style.visibility = "hidden";
-                                    document.getElementById("mensajeModificar").style.visibility = "hidden";
-                                    document.getElementById("resulOk").innerHTML = "<a>"+
-                                            "El Administrador se ha modificado correctamente</a>";
-                                    document.getElementById("id").value = null;
-                                }  
-                            }
+        });
+        $("#id").val("");
+        
+    })
+}
+function busqueda(datos){
+    if(datos != null){
+        document.getElementById("resultado").style.visibility = "visible";
+        $("#administrador").val(datos.ID);
+        $("#contra").val(datos.Password);
+        $("#correo").val(datos.Correo);
+        // PARA ELIMINAR
+        $("#eliminar").click(function(){
+            $("#mensaje").html("¿Está usted seguro de que desea borrar los datos?<br>Esta acción no se podrá deshacer");
+            $(function(){
+                $("#mensaje").dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: "auto",
+                    modal: true,
+                    buttons: {
+                        "Eliminar": function() {
+                            $.ajax({
+                                url: "Controllers/admin/administradores/borrar.php",
+                                type: "POST",
+                                data: {id: $("#administrador").val()}
+                            }).done(function(response){
+                                if(response == 1) {
+                                    $("#resultado").attr("style", "visibility:hidden");
+                                    $(function(){
+                                        $("#resulOk").html("Borrado realizado con éxito").attr("title", "Realizado");
+                                        $("#resulOk").dialog({
+                                            modal: true,
+                                            buttons: {
+                                                Aceptar: function(){
+                                                    $(this).dialog("close");
+                                                }
+                                            }
+                                        });
+                                    });
+                                    $("#id").val("");
+                                }
+                            })
+                            $(this).dialog("close");
+                        },
+                        Cancel: function(){
+                            $(this).dialog("close");
                         }
                     }
+                });
+            });
+        });
+        // PARA MODIFICAR
+        $("#modificar").click(function() {
+            $("#mensaje").html("¿Está usted seguro de que desea modificar los datos?<br>Esta acción no se podrá deshacer");
+            $(function(){
+                $("#mensaje").dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: "auto",
+                    modal: true,
+                    buttons: {
+                        "Modificar": function() {
+                            $.ajax({
+                                url: "Controllers/admin/administradores/modificar.php",
+                                type: "POST",
+                                data: {
+                                    id: $("#id").val(),
+                                    administrador: $("#administrador").val(),
+                                    contra: $("#contra").val(),
+                                    tipo: "1",
+                                    correo: $("#correo").val()
+                                }
+                            }).done(function(response){
+                                if(response == 1){
+                                    $("#resultado").attr("style", "visibility:hidden");
+                                    $(function(){
+                                        $("#resulOk").html("Modificación realizada con éxito").attr("title", "Realizada");
+                                        $("#resulOk").dialog({
+                                            modal: true,
+                                            buttons: {
+                                                Aceptar: function(){
+                                                    $(this).dialog("close");
+                                                }
+                                            }
+                                        });
+                                    });
+                                    document.getElementById("id").value = null;
+                                }
+                            })
+                            $(this).dialog("close");
+                        },
+                        Cancel: function(){
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+            });
+        });            
+    } else {
+        $(function(){
+            $("#resultado").attr("style", "visibility:hidden");
+            $("#resulOk").html("Inserta un Administrador válido").attr("title", "Error en la busqueda");
+            $("#resulOk").dialog({
+                modal: true,
+                buttons: {
+                    Aceptar: function(){
+                        $(this).dialog("close");
+                    }
                 }
-            }            
-        } else {
-            console.log(datos);
-            document.getElementById("resultado").style.visibility = "hidden";
-            document.getElementById("resulOk").innerHTML = "Inserta un Administrador válido";
-        }
+            });
+        });
+        $("#id").val("");
     }
-    
-    window.onload = function(){
-        document.getElementById("buscar").onclick = peticion;
-    }
+}
+$(document).ready(function(){
+    $("#buscar").click(peticion);
+});
