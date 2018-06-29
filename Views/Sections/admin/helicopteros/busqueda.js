@@ -1,88 +1,95 @@
-var conexion;
-    /* Petición AJAX */
-    function peticion(){
-        if(window.XMLHttpRequest){
-           conexion = new XMLHttpRequest();
-        } else {
-            conexion = new ActiveXObject("Microsoft.XMLTHHP");
-        }
-        /* Configuramos el callback para procesar la respuesta y enviamos las peticiones */
-        conexion.onreadystatechange = respuesta;
-        conexion.open("POST", "Controllers/admin/helos/busqueda.php");
-        conexion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        conexion.send("id="+document.getElementById("id").value); 
-    }
-    function respuesta(){
-        if(conexion.readyState == 4){
-            if(conexion.status == 200){
-                recibeDatos(conexion.responseText);
-            }
-        }
-    }
-    
-    function recibeDatos(jdatos){
-        datos = JSON.parse(jdatos);
+function peticion(){
+    $.ajax({
+        url: "Controllers/admin/helos/busqueda.php",
+        type: "POST",
+        data: {id: $("#id").val()}
+    }).done(function (response){
+        var datos = jQuery.parseJSON(response);
         busqueda(datos);
-    }
-    
-    function busqueda(datos){
-        if(datos.modelo != null){
-            console.log(datos);
-            document.getElementById("resulOk").innerHTML = "";
-            document.getElementById("resultado").style.visibility = "visible";
-            document.getElementById("matricula").value = datos.matricula;
-            if(datos.simulador == 1){
-                document.getElementById("simulador").setAttribute("checked", "checked");
-            } else {
-                document.getElementById("simulador").removeAttribute("checked");
-            }
-            document.getElementById("modelo").value = datos.modelo;
-            document.getElementById("fecAlta").value = datos.fecAlta;
-            document.getElementById("fecBaja").value = datos.fecBaja;
-            // PARA ELIMINAR
-            document.getElementById("baja").onclick = function(){
-                console.log("Entra en dar de baja");
-                document.getElementById("mensajeEliminar").style.visibility = "visible";
-                document.getElementById("noEliminar").onclick = function(){
-                    document.getElementById("mensajeEliminar").style.visibility = "hidden";
-                }
-                document.getElementById("siEliminar").onclick = function(){
-                    if(window.XMLHttpRequest){
-                        conexion = new XMLHttpRequest();
-                    } else {
-                        conexion = new ActiveXObject("Microsoft.XMLTHHP");
-                    }
-                    conexion.onreadystatechange = respuestaBorrado;
-                    conexion.open("POST", "Controllers/admin/helos/baja.php");
-                    conexion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    conexion.send("id="+document.getElementById("matricula").value +
-                            "&modelo="+document.getElementById("modelo").value +
-                            "&simulador="+document.getElementById("simulador").value +
-                            "&fecAlta="+document.getElementById("fecAlta").value +
-                            "&fecBaja="+document.getElementById("fecBaja").value);
-                    
-                    function respuestaBorrado(){
-                        if(conexion.readyState == 4){
-                            if(conexion.status == 200){
-                                if(conexion.responseText == 1){
-                                    document.getElementById("resultado").style.visibility = "hidden";
-                                    document.getElementById("mensajeEliminar").style.visibility = "hidden";
-                                    document.getElementById("resulOk").innerHTML = "<a>"+
-                                            "El helicóptero se ha dado de baja satisfactoriamente</a>";
-                                    document.getElementById("id").value = null;
-                                }  
-                            }
-                        }
-                    }
+    }).fail(function() {
+        $("#resultado").removeAttr("sytle");
+        $("#resulOk").html("Inserta un Helicóptero válido").attr("title", "Error en la busqueda");
+        $("#resulOk").dialog({
+            modal: true,
+            buttons: {
+                Aceptar: function(){
+                    $(this).dialog("close");
                 }
             }
+        });
+        $("#id").val("");
+    })
+}
+function busqueda(datos){
+    if(datos.modelo != null){
+        $("#resultado").attr("style", "display: block");
+        $("#matricula").val(datos.matricula);
+        $("#modelo").val(datos.modelo);
+        $("#fecAlta").val(datos.fecAlta);
+        if(datos.simulador == "1") {
+            $("#simulador").attr("checked", "checked");
         } else {
-            console.log(datos);
-            document.getElementById("resultado").style.visibility = "hidden";
-            document.getElementById("resulOk").innerHTML = "Inserta una matrícula válida";
+            $("#simulador").removeAttr("checked");
         }
+        $("#fecBaja").val(datos.fecBaja);
+        // PARA DAR DE BAJA
+        $("#baja").click(function(){
+           $("#mensaje").html("¿Está usted seguro de que desea dar de baja el Helicópteros?");
+           $(function(){
+               $("#mensaje").dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: "auto",
+                    modal: true,
+                    buttons: {
+                        "Dar de Baja": function() {
+                            $.ajax({
+                                url: "Controllers/admin/helos/baja.php",
+                                type: "POST",
+                                data: {id: $("#matricula").val(),
+                                    fecBaja: $("#fecBaja").val()}
+                            }).done(function(response){
+                                if(response == 1) {
+                                    $("#resultado").removeAttr("style");
+                                    $(function(){
+                                        $("#resulOk").html("Baja realizada con éxito").attr("title", "Realizada");
+                                        $("#resulOk").dialog({
+                                            modal: true,
+                                            buttons: {
+                                                Aceptar: function(){
+                                                    $(this).dialog("close");
+                                                }
+                                            }
+                                        });
+                                    });
+                                    $("#id").val("");
+                                }
+                            })
+                            $(this).dialog("close");
+                        }, 
+                        Cancel: function(){
+                            $(this).dialog("close");
+                        }
+                    }                        
+                });
+           });
+        });
+    } else { 
+        $("#resultado").removeAttr("style");
+        $("#resulOk").html("Inserta un Helicóptero válido").attr("title", "Error en la busqueda");
+        $("#resulOk").dialog({
+            modal: true,
+            buttons: {
+                Aceptar: function(){
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $("#id").val("");
     }
-    
-    window.onload = function(){
-        document.getElementById("buscar").onclick = peticion;
-    }
+}
+
+
+$(document).ready(function(){
+    $("#buscar").click(peticion);
+});

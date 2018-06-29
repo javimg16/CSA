@@ -1,5 +1,5 @@
 <section>
-    <form method="post" action="index.php?altahelos=datos">
+    <form method="post" action="index.php?opcion=helos&accion=alta&datos">
         <fieldset>
             <legend>Alta Nuevo Helicoptero</legend>
             <table>

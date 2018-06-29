@@ -10,9 +10,6 @@ class Helicopteros {
     
     function __construct($matricula) {
         $this -> matricula = $matricula;
-//        $this -> simulador = $simulador;
-//        $this -> fecAlta = $fecAlta;
-//        $this -> modelo = $modelo;
     }
 
     function getMatricula() {
@@ -91,14 +88,12 @@ class Helicopteros {
         }
     }
     
-    function update($matricula, $modelo, $simulador, $fecAlta, $fecBaja){
+    function update($matricula, $fecBaja){
         try {
             $conexiones = Conexiones::getConexion();
-            $consulta = "UPDATE helicopteros SET Matricula = ?, Simulador = ?, "
-                    . "FecAlta = ?, FecBaja = ?, Modelo = ? WHERE Matricula = ?";
+            $consulta = "UPDATE helicopteros SET FecBaja = ? WHERE Matricula = ?";
             $stmt = $conexiones -> prepare($consulta);
-            $stmt -> bind_param('sissss', $matricula, $simulador, $fecAlta, 
-                    $fecBaja, $modelo, $matricula);
+            $stmt -> bind_param('ss', $fecBaja, $matricula);
             if ($stmt -> execute()){
                 return true;
             } else {

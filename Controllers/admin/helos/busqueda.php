@@ -11,8 +11,7 @@ $resultado = $heli -> retrive($matricula);
 $heli -> setModelo($resultado[4]);
 $heli -> setSimulador($resultado[1]);
 $heli -> setFecAlta($resultado[2]);
-
-//print_r($heli);
+$heli ->setFecBaja($resultado[3]);
 
 echo json_encode($heli);
 

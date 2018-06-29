@@ -27,13 +27,12 @@
             </table>
         </fieldset>
     </form>
-    <div id="mensajeEliminar">
-        <p>¿Está usted seguro de que desea dar de Baja el Helicóptero?</p>
-        <input type="button" value="NO" id="noEliminar" />
-        <input type="button" value="SI" id="siEliminar" />
-    </div>
+    <div id="mensaje"></div>
     <div id="inicio">
         <a href="index.php">Inicio</a>
     </div>
 </section>
+<script src="Libreries/jquery/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.css" >
+<script src="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script type="text/javascript" src="Views/Sections/admin/helicopteros/busqueda.js" ></script>

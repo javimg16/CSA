@@ -16,13 +16,13 @@ function peticion(){
                 }
             }
         });
-        $("#id").val("");
-        
+        $("#id").val("");    
     })
 }
+
 function busqueda(datos){
     if(datos != null){
-        document.getElementById("resultado").style.visibility = "visible";
+        $("#resultado").attr("style", "display: block");
         $("#administrador").val(datos.ID);
         $("#contra").val(datos.Password);
         $("#correo").val(datos.Correo);
@@ -116,7 +116,7 @@ function busqueda(datos){
         });            
     } else {
         $(function(){
-            $("#resultado").attr("style", "visibility:hidden");
+            $("#resultado").removeAttr("style");
             $("#resulOk").html("Inserta un Administrador válido").attr("title", "Error en la busqueda");
             $("#resulOk").dialog({
                 modal: true,

@@ -72,7 +72,7 @@ form {
 }
 
 #resultado {
-    visibility: hidden;
+    display: none;
 }
 
 #inicio {
