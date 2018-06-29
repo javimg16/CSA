@@ -7,7 +7,14 @@
                     <td><label for="matricula">Matricula</label></td>
                     <td><input type="text" name="matricula"/></td>
                     <td><label for="modelo">Modelo </label></td>
-                    <td><input type="text" name="modelo"/></td>
+                    <td>
+                        <select name="modelo">
+                            <option value="HE-26">HE-26</option>
+                            <option value="HR-12">HR-12</option>
+                            <option value="HT-17">HT-17</option>
+                            <option value="HU-10">HU-10</option>
+                        </select>
+                    </td>
                     <td><label for="fecha">Fecha de Alta</label></td>
                     <td><input type="date" name="fecAlta"/>
                 </tr>

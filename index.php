@@ -66,7 +66,7 @@ else {
             /* cursos */
             elseif ($_REQUEST['opcion'] == 'cursos'){
                 if($_REQUEST['accion'] == 'listar'){
-                    
+                    include 'Views/Sections/admin/cursos/listar.php';
                 } elseif ($_REQUEST['accion'] == 'alta') {
                     
                 }

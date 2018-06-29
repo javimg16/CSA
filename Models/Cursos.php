@@ -14,14 +14,19 @@
 class Cursos {
     //put your code here
     
-    private $modelo;
-    private $fecIni;
-    private $fecFin;
-        
-    function __construct($modelo, $fecIni, $fecFin) {
+    public $modelo;
+    public $fecIni;
+    public $fecFin;
+    public $numAlumnos;
+    
+    public function __construct0(){}
+    
+            
+    public function __construct1($modelo, $fecIni, $fecFin, $numAlumnos) {
         $this -> modelo = $modelo;
         $this -> fecIni = $fecIni;
         $this -> fecFin = $fecFin;
+        $this -> numAlumnos = $numAlumnos;
     }
 
     function getModelo() {
@@ -46,6 +51,20 @@ class Cursos {
 
     function setFecFin($fecFin) {
         $this -> fecFin = $fecFin;
+    }
+    
+    function retriveAll() {
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "SELECT Modelo, FecIni, FecFin, numAlumnos FROM cursos";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt ->execute();
+            $resultado = $stmt -> get_result();
+            $envio = $resultado -> fetch_array();
+            return $envio;
+        } catch (Exception $ex) {
+            echo $ex;
+        }
     }
     
 }
