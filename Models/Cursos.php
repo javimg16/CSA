@@ -58,9 +58,12 @@ class Cursos {
             $conexion = Conexiones::getConexion();
             $consulta = "SELECT Modelo, FecIni, FecFin, numAlumnos FROM cursos";
             $stmt = $conexion -> prepare($consulta);
-            $stmt ->execute();
-            $resultado = $stmt -> get_result();
-            $envio = $resultado -> fetch_array();
+            $stmt -> execute();
+            $resultado = $stmt ->get_result();
+            $envio = array();
+            while($fila = $resultado ->fetch_array()){
+                array_push($envio, $fila);
+            }
             return $envio;
         } catch (Exception $ex) {
             echo $ex;

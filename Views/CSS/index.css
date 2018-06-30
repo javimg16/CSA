@@ -83,3 +83,18 @@ footer{
     clear: both;
 }
 
+#listado {
+    width: 800pt;
+    margin: 0 auto;
+}
+
+table {
+    width: 700pt;
+    margin: 0 auto;
+    text-align: center;
+    border: black solid 2pt;
+}
+
+td, th {
+    padding: 10pt;
+}
