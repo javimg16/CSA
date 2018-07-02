@@ -8,10 +8,12 @@ class Helicopteros {
     public $fecBaja;
     public $modelo;
     
+    
+            
     function __construct($matricula) {
         $this -> matricula = $matricula;
     }
-
+    
     function getMatricula() {
         return $this -> matricula;
     }
@@ -105,9 +107,14 @@ class Helicopteros {
     }
     
     
-    function delete(){
+    static function modelos(){
         try {
-            
+            $conexion = Conexiones::getConexion();
+            $consulta = "SELECT Modelo FROM modelos";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt -> execute();
+            $resultado = $stmt ->get_result();
+            return $resultado;
         } catch (Exception $ex) {
             echo $ex;
         }

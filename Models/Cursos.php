@@ -18,17 +18,14 @@ class Cursos {
     public $fecIni;
     public $fecFin;
     public $numAlumnos;
-    
-    public function __construct0(){}
-    
-            
-    public function __construct1($modelo, $fecIni, $fecFin, $numAlumnos) {
+      
+    public function __construct($modelo, $fecIni, $fecFin, $numAlumnos) {
         $this -> modelo = $modelo;
         $this -> fecIni = $fecIni;
         $this -> fecFin = $fecFin;
         $this -> numAlumnos = $numAlumnos;
     }
-
+    
     function getModelo() {
         return $this -> modelo;
     }
@@ -53,7 +50,34 @@ class Cursos {
         $this -> fecFin = $fecFin;
     }
     
-    function retriveAll() {
+    function getNumAlumnos() {
+        return $this-> numAlumnos;
+    }
+
+    function setNumAlumnos($numAlumnos) {
+        $this-> numAlumnos = $numAlumnos;
+    }
+    
+    function create() {
+        try {
+            $conexiones = Conexiones::getConexion();
+            $consulta = "INSERT INTO cursos (Modelo, FecIni, FecFin, numAlumnos)"
+                    ." VALUES (?, ?, ?, ?)";
+            $stmt = $conexiones -> prepare($consulta);
+            $modelo = $this -> getModelo();
+            $fechaini = $this -> getFecIni();
+            $alumnos = $this -> getNumAlumnos();
+            $fechafin = $this -> getFecFin();
+            $stmt -> bind_param('sssi', $modelo, $fechaini, $fechafin, $alumnos);
+            $stmt -> execute();
+            
+        } catch (Exception $ex) {
+            echo $ex;
+        }   
+    }
+    
+    
+    static function retriveAll() {
         try {
             $conexion = Conexiones::getConexion();
             $consulta = "SELECT Modelo, FecIni, FecFin, numAlumnos FROM cursos";
@@ -61,10 +85,23 @@ class Cursos {
             $stmt -> execute();
             $resultado = $stmt ->get_result();
             $envio = array();
-            while($fila = $resultado ->fetch_array()){
+            while($fila = $resultado -> fetch_array()){
                 array_push($envio, $fila);
             }
             return $envio;
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+    }
+    
+    static function modelos(){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "SELECT Modelo FROM modelos";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt -> execute();
+            $resultado = $stmt ->get_result();
+            return $resultado;
         } catch (Exception $ex) {
             echo $ex;
         }

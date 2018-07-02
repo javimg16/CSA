@@ -68,7 +68,10 @@ else {
                 if($_REQUEST['accion'] == 'listar'){
                     include 'Views/Sections/admin/cursos/listar.php';
                 } elseif ($_REQUEST['accion'] == 'alta') {
-                    
+                    include 'Views/Sections/admin/cursos/alta.php';
+                    if($_REQUEST['datos']){
+                        require 'Controllers/admin/cursos/alta.php';
+                    }
                 }
             }
             

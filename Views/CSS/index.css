@@ -85,10 +85,10 @@ footer{
 
 #listado {
     width: 800pt;
-    margin: 0 auto;
+    margin: 40pt auto;
 }
 
-table {
+#lista {
     width: 700pt;
     margin: 0 auto;
     text-align: center;
@@ -96,5 +96,5 @@ table {
 }
 
 td, th {
-    padding: 10pt;
+    padding: 5pt;
 }

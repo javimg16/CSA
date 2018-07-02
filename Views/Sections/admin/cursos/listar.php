@@ -2,7 +2,7 @@
     <div id="listado">
         <fieldset>
             <legend>LISTADO DE CURSOS</legend>
-            <table>
+            <table id="lista">
                 <thead>
                     <th>MODELO</th>
                     <th>FECHA DE INICIO</th>
@@ -10,8 +10,8 @@
                     <th>TOTAL DE ALUMNOS</th>
                 </thead>
                     <?php
-                        $cursos = new Cursos();
-                        foreach ($cursos -> retriveAll() as $curso => $fila) {
+//                        $cursos = new Cursos();
+                        foreach (Cursos::retriveAll() as $curso => $fila) {
                             print("<tr>");
                             print("<td>".$fila['Modelo']."</td>");
                             print("<td>".$fila['FecIni']."</td>");
@@ -24,7 +24,7 @@
         </fieldset>
     </div>
     <div>
-        <a href="">Nuevo Curso</a>
+        <a href="index.php?opcion=cursos&accion=alta">Nuevo Curso</a>
     </div>
     <div id="inicio">
         <a href="index.php">Inicio</a>

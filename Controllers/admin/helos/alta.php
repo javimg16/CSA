@@ -1,5 +1,5 @@
 <?php
-    
+
     $matricula = $_REQUEST['matricula'];
     $modelo = $_REQUEST['modelo'];
     $fecAlta = $_REQUEST['fecAlta'];
@@ -13,7 +13,7 @@
     $heli -> setModelo($modelo);
     $heli -> setFecAlta($fecAlta);
     $heli -> setSimulador($simulador);
-    
-    $heli -> create();
 
+    $heli -> create();
+    
 ?>
