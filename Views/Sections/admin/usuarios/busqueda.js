@@ -19,8 +19,35 @@ function peticion(){
         $("#id").val("");
     })
  }
-    
-    
-    $(document).ready(function(){
+
+function busqueda(datos){
+    if(datos != null){
+        $("#resultado").attr("style", "display:block");
+        $("#usuario").val(datos.ID);
+        $("#contra").val(datos.Password);
+        $("#correo").val(datos.Correo);
+        
+        $("#eliminar").click(function()){
+            $("#mensaje").html("¿Está seguro de que desea borrar los datos?<br>Esta accion no se podrá deshacer");
+            $(function(){
+                $("#mensaje").dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: "auto",
+                    modal: true,
+                    buttons: {
+                        "Eliminar": function() {
+                            $.ajax({
+                                url: "Controllers/admin/usuarios/borrar.php",
+                            })
+                        }
+                    }
+                });
+            }
+        }
+    }
+}
+
+$(document).ready(function(){
     $("#buscar").click(peticion);
 });
