@@ -21,6 +21,11 @@ if (!isset($_SESSION['tipo'])) {
 /* G E S T O R E S */
 else {
     include 'Views/header.php';
+    /* CERRAR SESION */
+    if(isset($_REQUEST['accion']) && $_REQUEST['accion'] == "desconectar"){
+        session_destroy();
+        header("location:index.php");
+    }
     /* ADMIN */
     if ($_SESSION['tipo'] == "@administrador") {
         include 'Views/Sections/admin/menu.php';
@@ -51,7 +56,6 @@ else {
                     include 'Views/Sections/admin/usuarios/busqueda.php';
                 }
             }
-
             /* helicopteros */
             elseif ($_REQUEST['opcion'] == 'helos') {
                 if ($_REQUEST['accion'] == 'alta') {
@@ -74,20 +78,37 @@ else {
                     }
                 }
             }
-            
         /* FIN DE ADMIN */
-    
         }
     }
     /* USER */ 
     elseif ($_SESSION['tipo'] == "@usuario") {
         include 'Views/Sections/user/menu.php';
-        if (isset($_REQUEST['altapersonal'])) {
-            include 'Views/Sections/user/personal/alta.php';
-        } elseif (isset($_REQUEST['altavuelo'])) {
-            include 'Views/Sections/user/vuelos/alta.php';
-        } else {
+        /* portada */
+        if(!isset($_REQUEST['opcion'])) {
             include 'Views/Sections/portada.php';
+        } 
+        else {
+            /* personal */
+            if ($_REQUEST['opcion'] == "personal") {
+                if($_REQUEST['accion'] == "alta"){
+                    include 'Views/Sections/user/personal/alta.php';
+                    if(isset($_REQUEST['datos']))
+                        include '';
+                } elseif($_REQUEST['accion'] == "busqueda"){
+                    
+                }
+            } 
+            /* helicópteros */
+            elseif ($_REQUEST['opcion'] == "helicopteros") {
+                include 'Views/Sections/user/helos/listar.php';
+            }
+            /* vuelos */
+            elseif (isset($_REQUEST['altavuelo'])) {
+                include 'Views/Sections/user/vuelos/alta.php';
+            } else {
+                include 'Views/Sections/portada.php';
+            }
         }
     }
     /* FIN DE USER */

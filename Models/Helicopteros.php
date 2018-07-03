@@ -106,7 +106,6 @@ class Helicopteros {
         }
     }
     
-    
     static function modelos(){
         try {
             $conexion = Conexiones::getConexion();
@@ -114,6 +113,21 @@ class Helicopteros {
             $stmt = $conexion -> prepare($consulta);
             $stmt -> execute();
             $resultado = $stmt ->get_result();
+            return $resultado;
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+    }
+    
+    static function listado(){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "SELECT he.Matricula, he.Modelo, he.FecAlta, he.FecBaja, "
+                ."SUM(vu.Tiempo), he.Simulador FROM helicopteros he, vuelos vu "
+                ."WHERE he.Matricula = vu.Matricula GROUP BY he.Matricula";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt -> execute();
+            $resultado = $stmt -> get_result();
             return $resultado;
         } catch (Exception $ex) {
             echo $ex;

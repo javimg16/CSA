@@ -14,7 +14,8 @@
                 PROYECTO CSA
             </div>
             <div class="categoria">
-                <?php echo ($_SESSION['tipo']) ?>
+                <a><?php echo ($_SESSION['tipo']) ?></a>
+                <a href="index.php?accion=desconectar">Desconectar</a>
             </div>
             <hr>
         </header>

@@ -11,11 +11,12 @@
                 </tr>
                 <tr>
                     <td><label for="apellidos">Apellidos</label></td>
-                    <td><input type="text" name="apellidos"/></td>
+                    <td colspan="3"><input type="text" name="apellidos" size="70"/></td>
                 </tr>
                 <tr>
                     <td><label for="fechaalta">Fecha de Alta</label></td>
                     <td><input type="date" name="fechaalta"/></td>
+                    <td><label for="funcion">Función a Bordo</label></td>
                     <td>
                         <select name="funcion">
                             <option value="piloto">Piloto</option>
@@ -25,14 +26,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <label for="cursos">Cursos</label>
-                    <td><input type="radio" name="modelo" value="modelo1"/>Modelo 1</td>
-                    <td><input type="radio" name="modelo" value="modelo2"/>Modelo 2</td>
-                    <td><input type="radio" name="modelo" value="modelo3"/>Modelo 3</td>
-                    <td><input type="radio" name="modelo" value="modelo4"/>Modelo 4</td>
+                    <td><label for="cursos">Cursos</label></td>
                 </tr>
+                    <?php
+                        $modelos = Helicopteros::modelos();
+                        while($fila = $modelos -> fetch_array()){
+                            print("<tr><td><input type=\"radio\" name=\"".$fila['Modelo']."\" "
+                                ."value=\"".$fila['Modelo']."\" />".$fila['Modelo']."</td></tr>");
+                        }
+                    ?>
                 <tr>
                     <td><input type="submit" value="Dar de alta"/></td>
+                    <td><input type="reset" value="Restaurar Formulario"/></td>
                 </tr>
             </table>
         </fieldset>
