@@ -1,5 +1,5 @@
 <section>
-    <form action="index.php?opcion=personal&accion=alta&datos">
+    <form method="post" action="index.php?opcion=personal&accion=alta&datos">
         <fieldset>
             <legend>Alta Nuevo Personal</legend>
             <table>
@@ -14,8 +14,8 @@
                     <td colspan="3"><input type="text" name="apellidos" size="70"/></td>
                 </tr>
                 <tr>
-                    <td><label for="fechaalta">Fecha de Alta</label></td>
-                    <td><input type="date" name="fechaalta"/></td>
+                    <td><label for="fecAlta">Fecha de Alta</label></td>
+                    <td><input type="date" name="fecAlta"/></td>
                     <td><label for="funcion">Función a Bordo</label></td>
                     <td>
                         <select name="funcion">

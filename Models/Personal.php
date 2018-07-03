@@ -1,5 +1,5 @@
 <?php
-    include 'Conexciones.php';
+    //include 'Conexiones.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,11 +13,11 @@
  */
 class Personal {
     //put your code here
-    private $dni;
-    private $nombre;
-    private $apellidos;
-    private $fecAlta;
-    private $funcion;
+    public $dni;
+    public $nombre;
+    public $apellidos;
+    public $fecAlta;
+    public $funcion;
     
     function __construct($dni, $nombre, $apellidos, $fecAlta, $funcion) {
         $this -> dni = $dni;
@@ -70,16 +70,34 @@ class Personal {
     function create() {
         try{
             $conexion = Conexiones::getConexion();
-            $consulta = "INSERTO INTO personal (DNI, Nombre, Apellidos, FecAlta, Funcion) "
+            $consulta = "INSERT INTO personal (DNI, Nombre, Apellidos, FecAlta, Funcion) "
                     . "VALUES (?,?,?,?,?)";
             $stmt = $conexion -> prepare($consulta);
-            $stmt -> bind_param('sssss', $this->getDni(), $this-> getNombre(), 
-                    $this->getApellidos(), $this->getFecAlta(), $this-> getFuncion());
-            $stmt ->execute();
+            $dni = $this -> getDni();
+            $nombre = $this -> getNombre();
+            $apellidos = $this -> getApellidos();
+            $fecAlta = $this -> getFecAlta();
+            $funcion = $this -> getFuncion();
+            $stmt -> bind_param('sssss', $dni, $nombre, $apellidos, $fecAlta, $funcion);
+            $stmt -> execute();
         } catch (Exception $e) {
-            echo "Error al insertar datos en tabla personal".$e -> getMessage();
+            echo "Error al insertar datos ".$e -> getMessage();
         }
     }
+    
+    function modelos($dni, $modelo) {
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "INSERT INTO cursos_personal (DNI, Modelo) "
+                    ."VALUES (?, ?)";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt -> bind_param('ss', $dni, $modelo);
+            $stmt -> execute();
+        } catch (Exception $ex) {
+            "Error al insertar datos en la tabla modelos".$ex -> getMessage();
+        }
+    }
+    
     
     function retrieve($dni){
         try {
