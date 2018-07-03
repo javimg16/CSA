@@ -69,7 +69,10 @@ class Cursos {
             $alumnos = $this -> getNumAlumnos();
             $fechafin = $this -> getFecFin();
             $stmt -> bind_param('sssi', $modelo, $fechaini, $fechafin, $alumnos);
-            $stmt -> execute();
+            if($stmt -> execute())
+                return true;
+            else
+                return false;
             
         } catch (Exception $ex) {
             echo $ex;
