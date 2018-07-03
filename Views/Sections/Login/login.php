@@ -17,7 +17,7 @@
         <section>
                 <form method="post" action="index.php?login">
                     <fieldset>
-                        <legend>LOGIN ESTO ES UNA PRUEBA DE QUE SE HA CLONADO BIEN</legend>
+                        <legend>LOGIN</legend>
                         <div class="imagenes">
                             <!-- Capa para el carrusel de imagenes -->
                         </div>
