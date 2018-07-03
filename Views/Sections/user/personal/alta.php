@@ -1,5 +1,5 @@
 <section>
-    <form>
+    <form action="index.php?opcion=personal&accion=alta&datos">
         <fieldset>
             <legend>Alta Nuevo Personal</legend>
             <table>

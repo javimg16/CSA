@@ -94,7 +94,7 @@ else {
                 if($_REQUEST['accion'] == "alta"){
                     include 'Views/Sections/user/personal/alta.php';
                     if(isset($_REQUEST['datos']))
-                        include '';
+                        require 'Controllers/user/personal/alta.php';
                 } elseif($_REQUEST['accion'] == "busqueda"){
                     
                 }
