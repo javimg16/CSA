@@ -13,8 +13,7 @@
                     <td><label>Administrador</label></td>
                     <td><input type="text" name="administrador" id="administrador" /></td>
                     <td><label>Contraseña</label></td>
-                    <td><input type="text" name="contra" id="contra" /></td>
-                    
+                    <td><input type="text" name="contra" id="contra" /></td>                    
                 </tr>
                 <tr>
                     <td><label>Correo</label></td>

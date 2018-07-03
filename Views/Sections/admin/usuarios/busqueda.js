@@ -18,7 +18,7 @@ function peticion(){
         });
         $("#id").val("");
     })
-   }
+ }
     
     
     $(document).ready(function(){

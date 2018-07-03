@@ -4,6 +4,7 @@
         <input type="text" id="id"/>
         <input type="button" value="Buscar" id="buscar" />
     </div>
+    <div id="resulOk"></div>
     <form id="resultado">
         <fieldset>
             <legend>Resultado Busqueda de Usuarios</legend>
@@ -16,7 +17,7 @@
                 </tr>
                 <tr>
                     <td><label>Correo</label></td>
-                    <td><input type="text" name="correo" size="60"/></td>
+                    <td colspan="3"><input type="text" name="correo" size="60"/></td>
                 </tr>
                 <tr>
                     <td><input type="button" value="Modificar" id="modificar"/></td>
