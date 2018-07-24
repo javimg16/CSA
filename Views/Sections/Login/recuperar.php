@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <title>PROYECTO CSA - Veronica BG & Javi MG</title>
+        <link rel="stylesheet" type="text/css" href="Views/CSS/index.css" />
     </head>
     <body>
         <header>
@@ -24,7 +25,7 @@
                         <table>
                             <tr>
                                 <td><label for="correo">e-Mail:</label></td>
-                                <td><input type="text" name="correo" /></td>
+                                <td><input type="text" name="correo" size="75" /></td>
                             </tr>
                             <tr>
                                 <td><input type="submit" value="Enviar Contraseña" /></td>

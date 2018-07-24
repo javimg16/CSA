@@ -1,8 +1,9 @@
 function peticion(){
     $.ajax({
-        url: "Controllers/admin/administradores/busqueda.php",
+        url: "Controllers/admin/administradores.php",
         type: "POST",
-        data: {id: $("#id").val()}
+        data: {accion: "busqueda",
+            id: $("#id").val()}
     }).done(function(response){
             var datos = jQuery.parseJSON(response);
             busqueda(datos);
@@ -38,9 +39,10 @@ function busqueda(datos){
                     buttons: {
                         "Eliminar": function() {
                             $.ajax({
-                                url: "Controllers/admin/administradores/borrar.php",
+                                url: "Controllers/admin/administradores.php",
                                 type: "POST",
-                                data: {id: $("#administrador").val()}
+                                data: {accion: "borrar",
+                                    id: $("#administrador").val()}
                             }).done(function(response){
                                 if(response == 1) {
                                     $("#resultado").attr("style", "visibility:hidden");
@@ -79,9 +81,9 @@ function busqueda(datos){
                     buttons: {
                         "Modificar": function() {
                             $.ajax({
-                                url: "Controllers/admin/administradores/modificar.php",
+                                url: "Controllers/admin/administradores.php",
                                 type: "POST",
-                                data: {
+                                data: { accion: "modificar",
                                     id: $("#id").val(),
                                     administrador: $("#administrador").val(),
                                     contra: $("#contra").val(),

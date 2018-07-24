@@ -39,7 +39,7 @@ else {
                 if($_REQUEST['accion'] == 'alta') {
                     include 'Views/Sections/admin/administradores/alta.php';
                     if (isset($_REQUEST['datos'])) {
-                        require 'Controllers/admin/administradores/alta.php';
+                        require 'Controllers/admin/administradores.php';
                     }
                 } elseif ($_REQUEST['accion'] == 'busqueda') {
                     include 'Views/Sections/admin/administradores/busqueda.php';
@@ -61,7 +61,7 @@ else {
                 if ($_REQUEST['accion'] == 'alta') {
                     include 'Views/Sections/admin/helicopteros/alta.php';
                     if (isset($_REQUEST['datos'])) {
-                        require 'Controllers/admin/helos/alta.php';
+                        require 'Controllers/admin/helos.php';
                     }
                 } elseif ($_REQUEST['accion'] == 'busqueda'){
                     include 'Views/Sections/admin/helicopteros/busqueda.php';
@@ -74,7 +74,7 @@ else {
                 } elseif ($_REQUEST['accion'] == 'alta') {
                     include 'Views/Sections/admin/cursos/alta.php';
                     if(isset($_REQUEST['datos'])){
-                        require 'Controllers/admin/cursos/alta.php';
+                        require 'Controllers/admin/cursos.php';
                     }
                 }
             }
@@ -91,12 +91,14 @@ else {
         else {
             /* personal */
             if ($_REQUEST['opcion'] == "personal") {
-                if($_REQUEST['accion'] == "alta"){
+                $accion = $_REQUEST['accion'];
+                if($accion == "alta"){
                     include 'Views/Sections/user/personal/alta.php';
-                    if(isset($_REQUEST['datos']))
-                        require 'Controllers/user/personal/alta.php';
-                } elseif($_REQUEST['accion'] == "busqueda"){
-                    
+                    if (isset($_REQUEST['datos'])) {
+                        include 'Controllers/user/personal.php';
+                    }
+                } elseif($accion == "busqueda"){
+                    include 'Views/Sections/user/personal/busqueda.php';
                 }
             } 
             /* helicópteros */

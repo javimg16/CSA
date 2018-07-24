@@ -8,8 +8,6 @@ class Helicopteros {
     public $fecBaja;
     public $modelo;
     
-    
-            
     function __construct($matricula) {
         $this -> matricula = $matricula;
     }

@@ -33,6 +33,6 @@
     </div>
 </section>
 <script src="Libreries/jquery/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.css" >
+<link rel="stylesheet" href="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.css">
 <script src="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script type="text/javascript" src="Views/Sections/admin/administradores/busqueda.js" ></script>
+<script type="text/javascript" src="JS/administradores.js" ></script>

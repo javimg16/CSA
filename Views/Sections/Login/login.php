@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <title>PROYECTO CSA - Veronica BG & Javi MG</title>
+        <link rel="stylesheet" type="text/css" href="Views/CSS/index.css" />
     </head>
     <body>
         <header>
@@ -32,7 +33,7 @@
                             </tr>
                             <tr>
                                 <td><input type="submit" value="Entrar" /></td>
-                                <td><a href="?recuperar">Recuperar Contraseña</a></td>
+                                <td><a href="index.php?recuperar">Recuperar Contraseña</a></td>
                             </tr>
                         </table>
                     </fieldset>

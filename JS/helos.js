@@ -1,14 +1,15 @@
 function peticion(){
     $.ajax({
-        url: "Controllers/admin/helos/busqueda.php",
+        url: "Controllers/admin/helos.php",
         type: "POST",
-        data: {id: $("#id").val()}
+        data: {accion: "busqueda",
+            id: $("#id").val()}
     }).done(function (response){
         var datos = jQuery.parseJSON(response);
         busqueda(datos);
     }).fail(function() {
-        $("#resultado").removeAttr("sytle");
-        $("#resulOk").html("Inserta un Helicóptero válido").attr("title", "Error en la busqueda");
+        $("#resultado").removeAttr("style");
+        $("#resulOk").html("Fallo en la conexión con el servidor").attr("title", "Error en la busqueda");
         $("#resulOk").dialog({
             modal: true,
             buttons: {
@@ -44,9 +45,10 @@ function busqueda(datos){
                     buttons: {
                         "Dar de Baja": function() {
                             $.ajax({
-                                url: "Controllers/admin/helos/baja.php",
+                                url: "Controllers/admin/helos.php",
                                 type: "POST",
-                                data: {id: $("#matricula").val(),
+                                data: {accion: "baja",
+                                    id: $("#matricula").val(),
                                     fecBaja: $("#fecBaja").val()}
                             }).done(function(response){
                                 if(response == 1) {

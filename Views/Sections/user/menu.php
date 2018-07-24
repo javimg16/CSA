@@ -3,7 +3,7 @@
         <li><a href="">Personal</a>
             <ul>
                 <li><a href="index.php?opcion=personal&accion=alta">Alta</a></li>
-                <li><a href="#">Busqueda</a></li>
+                <li><a href="index.php?opcion=personal&accion=busqueda">Busqueda</a></li>
             </ul>
         </li>
         <li><a href="">Vuelos</a>

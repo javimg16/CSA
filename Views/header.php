@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<head>
+<html lang="es">
+    <head>
         <meta charset="UTF-8">
         <title>PROYECTO CSA - Veronica BG & Javi MG</title>
         <link rel=stylesheet type="text/css" href="Views/CSS/index.css" />

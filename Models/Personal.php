@@ -1,5 +1,4 @@
 <?php
-    //include 'Conexiones.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,12 +18,8 @@ class Personal {
     public $fecAlta;
     public $funcion;
     
-    function __construct($dni, $nombre, $apellidos, $fecAlta, $funcion) {
+    function __construct($dni) {
         $this -> dni = $dni;
-        $this -> nombre = $nombre;
-        $this -> apellidos = $apellidos;
-        $this -> fecAlta = $fecAlta;
-        $this -> funcion = $funcion;
     }
 
     function getDni() {
@@ -98,15 +93,38 @@ class Personal {
         }
     }
     
-    
-    function retrieve($dni){
+    function retriveMod() {
         try {
             $conexion = Conexiones::getConexion();
-            $consulta = "SELECT * FROM personal";
+            $consulta = "SELECT Modelo FROM cursos_personal WHERE DNI = ?";
             $stmt = $conexion -> prepare($consulta);
-            
+            $dni = $this -> dni;
+            $stmt -> bind_param('s', $dni);
+            $stmt -> execute();
+            $resultado = $stmt -> get_result();
+            $envio = array();
+            while ($fila = $resultado -> fetch_array()){
+                array_push($envio, $fila);
+            }
+            return $envio;
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+    }
+    
+    function retrive($dni){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "SELECT DNI, Nombre, Apellidos, FecAlta, Funcion "
+                . "FROM personal WHERE DNI = ?";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt -> bind_param('s', $dni);
+            $stmt -> execute();
+            $resultado = $stmt -> get_result();
+            $envio = $resultado -> fetch_array();
+            return $envio;
         } catch (Exception $e) {
-            echo "Error al cargar los datos de la tabla personal".$e -> getMessage();
+            echo "Error al cargar los datos de la tabla personal ".$e -> getMessage();
         }
     }
 }
