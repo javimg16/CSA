@@ -12,7 +12,7 @@
                 <table>
                 <tr>
                     <td><label for="dni">DNI</label></td>
-                    <td><input type="text" name="dni" id="dni"/></td>
+                    <td><input type="text" name="dni" id="dni" disabled="disabled"/></td>
                     <td><label for="nombre">Nombre </label></td>
                     <td><input type="text" name="nombre" id="nombre" /></td>                    
                 </tr>

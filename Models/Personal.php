@@ -80,6 +80,53 @@ class Personal {
         }
     }
     
+    function retrive($dni){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "SELECT DNI, Nombre, Apellidos, FecAlta, Funcion "
+                . "FROM personal WHERE DNI = ?";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt -> bind_param('s', $dni);
+            $stmt -> execute();
+            $resultado = $stmt -> get_result();
+            $envio = $resultado -> fetch_array();
+            return $envio;
+        } catch (Exception $e) {
+            echo "Error al cargar los datos de la tabla personal ".$e -> getMessage();
+        }
+    }
+    
+    function update($nombre, $apellidos, $fecAlta, $funcion){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "UPDATE personal SET Nombre = ?, Apellidos = ?, "
+                    . "FecAlta = ?, Funcion = ? WHERE DNI = ?";
+            $stmt = $conexion -> prepare($consulta);
+            $dni = $this ->getDni();
+            $stmt -> bind_param('sssss', $nombre, $apellidos, $fecAlta, $funcion, $dni);
+            $stmt -> execute();
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+    }
+    
+    function delete(){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "DELETE FROM personal WHERE DNI = ?";
+            $dni = $this -> dni;
+            $stmt = $conexion -> prepare($consulta);
+            $stmt ->bind_param('s', $dni);
+            if($stmt -> execute()){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $ex){
+            echo $ex;
+        }
+    }
+    
     function modelos($dni, $modelo) {
         try {
             $conexion = Conexiones::getConexion();
@@ -112,19 +159,16 @@ class Personal {
         }
     }
     
-    function retrive($dni){
+    function delMod(){
         try {
             $conexion = Conexiones::getConexion();
-            $consulta = "SELECT DNI, Nombre, Apellidos, FecAlta, Funcion "
-                . "FROM personal WHERE DNI = ?";
+            $consulta = "DELETE FROM cursos_personal WHERE DNI = ?";
             $stmt = $conexion -> prepare($consulta);
-            $stmt -> bind_param('s', $dni);
+            $dni = $this -> dni;
+            $stmt ->bind_param('s', $dni);
             $stmt -> execute();
-            $resultado = $stmt -> get_result();
-            $envio = $resultado -> fetch_array();
-            return $envio;
-        } catch (Exception $e) {
-            echo "Error al cargar los datos de la tabla personal ".$e -> getMessage();
+        } catch (Exception $ex) {
+            echo $ex;
         }
     }
 }

@@ -99,7 +99,7 @@ else {
                     }
                 } elseif($accion == "busqueda"){
                     include 'Views/Sections/user/personal/busqueda.php';
-                }
+                } 
             } 
             /* helicópteros */
             elseif ($_REQUEST['opcion'] == "helicopteros") {
