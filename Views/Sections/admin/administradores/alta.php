@@ -14,12 +14,12 @@
                     <td colspan="3"><input type="text" name="correo" size="60"/></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" value="Dar de alta"/></td>
+                    <td><input type="submit" value="Dar de alta" class="ui-button ui-widget ui-corner-all" /></td>
                 </tr>
             </table>
         </fieldset>
     </form>
     <div id="inicio">
-        <a href="index.php">Inicio</a>
+        <a href="index.php" class="ui-button ui-widget ui-corner-all" >Inicio</a>
     </div>
 </section>

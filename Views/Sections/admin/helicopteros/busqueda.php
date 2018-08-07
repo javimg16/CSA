@@ -2,7 +2,7 @@
     <div class="busqueda">
         <label>Introduce la Matrícula</label>
         <input type="text" id="id"/>
-        <input type="button" value="Buscar" id="buscar" />
+        <input type="button" value="Buscar" id="buscar" class="ui-button ui-widget ui-corner-all" />
     </div>
     <div id="resulOk"></div>
     <form id="resultado">
@@ -22,17 +22,16 @@
                     <td><input type="checkbox" name="simulador" id="simulador" disabled /></td>
                     <td><label>Fecha de Baja</label></td>
                     <td><input type="date" name="fecBaja" id="fecBaja" /></td>
-                    <td><input type="button" value="Dar de Baja" id="baja" /></td>
+                    <td><input type="button" value="Dar de Baja" id="baja" class="ui-button ui-widget ui-corner-all" /></td>
                 </tr>
             </table>
         </fieldset>
     </form>
     <div id="mensaje"></div>
     <div id="inicio">
-        <a href="index.php">Inicio</a>
+        <a href="index.php" class="ui-button ui-widget ui-corner-all" >Inicio</a>
     </div>
 </section>
 <script src="Libreries/jquery/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.css" >
 <script src="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script type="text/javascript" src="JS/helos.js" ></script>

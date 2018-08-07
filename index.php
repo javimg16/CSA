@@ -106,9 +106,19 @@ else {
                 include 'Views/Sections/user/helos/listar.php';
             }
             /* vuelos */
-            elseif (isset($_REQUEST['altavuelo'])) {
-                include 'Views/Sections/user/vuelos/alta.php';
-            } else {
+            elseif ($_REQUEST['opcion'] == "vuelos"){
+                $accion = $_REQUEST['accion'];
+                if($accion == 'alta'){
+                    include 'Views/Sections/user/vuelos/alta.php';
+                } elseif($accion == "busqueda") {
+                    include 'Views/Sections/user/vuelos/busqueda.php';
+                }
+            } 
+            /* estadísticas */
+            elseif ($_REQUEST['opcion'] == "estadisticas"){
+                include 'Views/Sections/user/estadisticas/estadisticas.php';
+            }
+            else {
                 include 'Views/Sections/portada.php';
             }
         }

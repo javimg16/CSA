@@ -62,7 +62,7 @@ section {
     text-align: center;
 }
 
-form {
+fieldset {
     width: 500pt;
     margin: 40pt auto;
 }
@@ -71,7 +71,7 @@ form {
     margin: 40pt auto;
 }
 
-#resultado {
+#resultado, #personal {
     display: none;
 }
 
@@ -97,4 +97,10 @@ footer{
 
 td, th {
     padding: 5pt;
+}
+
+#grafica {
+    width: 900px;
+    height: 400px;
+    margin: 100px auto;
 }

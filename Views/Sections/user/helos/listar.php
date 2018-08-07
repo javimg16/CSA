@@ -28,6 +28,6 @@
         </fieldset>
     </div>
     <div id="inicio">
-        <a href="index.php">Inicio</a>
+        <a href="index.php" class="ui-button ui-widget ui-corner-all">Inicio</a>
     </div>
 </section>

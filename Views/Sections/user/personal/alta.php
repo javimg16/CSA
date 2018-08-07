@@ -36,11 +36,11 @@
                         }
                     ?>
                 <tr>
-                    <td><input type="submit" value="Dar de alta"/></td>
-                    <td><input type="reset" value="Restaurar Formulario"/></td>
+                    <td><input type="submit" value="Dar de alta" class="ui-button ui-widget ui-corner-all" /></td>
+                    <td><input type="reset" value="Restaurar Formulario" class="ui-button ui-widget ui-corner-all" /></td>
                 </tr>
             </table>
         </fieldset>
     </form>
-    <a href="index.php">Inicio</a>
+    <a href="index.php" class="ui-button ui-widget ui-corner-all">Inicio</a>
 </section>

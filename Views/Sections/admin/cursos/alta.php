@@ -25,10 +25,10 @@
                     <td><input type="date" name="fechafin" /></td>
                 </tr>
                 <tr>
-                    <td colspan="4"><input type="submit" value="Alta" /></td>
+                    <td colspan="4"><input type="submit" value="Alta" class="ui-button ui-widget ui-corner-all" /></td>
                 </tr>
             </table>
         </fieldset>
     </form>
-    <a href="index.php">Inicio</a>
+    <a href="index.php" class="ui-button ui-widget ui-corner-all" >Inicio</a>
 </section>

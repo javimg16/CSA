@@ -167,9 +167,7 @@ function busqueda(datos){
                                 $("#id").val("");
                             })
                         $(this).dialog("close");
-                        
                         }
-                        
                     }
                 })
             })

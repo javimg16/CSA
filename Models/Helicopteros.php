@@ -131,5 +131,34 @@ class Helicopteros {
             echo $ex;
         }
     }
+    
+    static function modelo($matricula){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "SELECT Modelo FROM helicopteros WHERE Matricula = ?";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt -> bind_param('s', $matricula);
+            $stmt -> execute();
+            $resultado = $stmt -> get_result();
+            $modelo = "";
+            while ($fila = $resultado -> fetch_array()){
+                $modelo = $fila;
+            }
+            return $modelo;
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+    }
+    
+    static function matriculas(){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "SELECT Matricula FROM helicopteros";
+            $resultado = $conexion -> query($consulta);
+            return $resultado;
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+    }
 }
 ?>

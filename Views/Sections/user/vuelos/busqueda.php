@@ -1,17 +1,19 @@
 <section>
     <form>
         <fieldset>
-            <legend>Alta Nuevo Vuelo</legend>
+            <legend>Busqueda de vuelo</legend>
+            <label>Introduce el número de vuelo</label>
+            <input type="text" id="numBusqueda" />
+            <input type="button" id="buscarVuelo" value="Buscar" class="ui-button ui-widget ui-corner-all" />
+        </fieldset>
+    </form>
+    <form id="resultado">
+        <fieldset>
+            <legend>Resultado de la busqueda:</legend>
             <table>
                 <tr>
                     <td><label for="registro">Registro Núm: </label></td>
-                    <td>
-                        <?php
-                            $registro = Vuelos::ultimo();
-                            print_r("<input type=\"text\" id=\"registro\" value=\""
-                                .($registro+1)."\" disabled />");
-                        ?>
-                    </td>
+                    <td><input type="text" id="registro" disabled /></td>
                     <td><label for="fecha">Fecha </label></td>
                     <td><input type="date" name="fecha" id="fecha" /></td> 
                     <td><label for="tiempo">Tiempo </label></td>
@@ -51,8 +53,8 @@
                     </td>
                 </tr>
                 <tr>  
-                    <td><input type="button" value="Guardar" id="guardar" class="ui-button ui-widget ui-corner-all" /></td>
-                    <td><input type="reset" value="Borrar datos" id="reset" class="ui-button ui-widget ui-corner-all" /></td>
+                    <td><input type="button" value="Modificar Vuelo" id="modificar" class="ui-button ui-widget ui-corner-all" /></td>
+                    <td><input type="button" value="Borrar Vuelo" id="borrar" class="ui-button ui-widget ui-corner-all" /></td>
                 </tr>
             </table>
         </fieldset>
@@ -73,7 +75,7 @@
         </form>
     </div>
     <div id="confirmacion"></div>
-    <a href="index.php" class="ui-button ui-widget ui-corner-all">Inicio</a>
+    <a href="index.php" class="ui-button ui-widget ui-corner-all" >Inicio</a>
 </section>
 <script src="Libreries/jquery/jquery-3.2.1.min.js"></script>
 <script src="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>

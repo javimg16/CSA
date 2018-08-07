@@ -89,8 +89,8 @@ class Personal {
             $stmt -> bind_param('s', $dni);
             $stmt -> execute();
             $resultado = $stmt -> get_result();
-            $envio = $resultado -> fetch_array();
-            return $envio;
+            $resultado = $resultado ->fetch_array();
+            return $resultado;
         } catch (Exception $e) {
             echo "Error al cargar los datos de la tabla personal ".$e -> getMessage();
         }

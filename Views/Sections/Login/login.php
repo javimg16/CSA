@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>PROYECTO CSA - Veronica BG & Javi MG</title>
         <link rel="stylesheet" type="text/css" href="Views/CSS/index.css" />
+        <link rel="stylesheet" href="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.css" >
     </head>
     <body>
         <header>
@@ -32,8 +33,8 @@
                                 <td><input type="password" name="contra" /></td>
                             </tr>
                             <tr>
-                                <td><input type="submit" value="Entrar" /></td>
-                                <td><a href="index.php?recuperar">Recuperar Contraseña</a></td>
+                                <td><input type="submit" value="Entrar" class="ui-button ui-widget ui-corner-all" /></td>
+                                <td><a href="index.php?recuperar" class="ui-button ui-widget ui-corner-all">Recuperar Contraseña</a></td>
                             </tr>
                         </table>
                     </fieldset>

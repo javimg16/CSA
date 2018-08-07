@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>PROYECTO CSA - Veronica BG & Javi MG</title>
         <link rel="stylesheet" type="text/css" href="Views/CSS/index.css" />
+        <link rel="stylesheet" href="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.css" >
     </head>
     <body>
         <header>
@@ -28,8 +29,8 @@
                                 <td><input type="text" name="correo" size="75" /></td>
                             </tr>
                             <tr>
-                                <td><input type="submit" value="Enviar Contraseña" /></td>
-                                <td><a href="index.php">Volver</a></td>
+                                <td><input type="submit" value="Enviar Contraseña" class="ui-button ui-widget ui-corner-all" /></td>
+                                <td><a href="index.php" class="ui-button ui-widget ui-corner-all">Volver</a></td>
                             </tr>
                         </table>
                     </fieldset>

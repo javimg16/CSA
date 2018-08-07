@@ -86,7 +86,7 @@ class Cursos {
             $consulta = "SELECT Modelo, FecIni, FecFin, numAlumnos FROM cursos";
             $stmt = $conexion -> prepare($consulta);
             $stmt -> execute();
-            $resultado = $stmt ->get_result();
+            $resultado = $stmt -> get_result();
             $envio = array();
             while($fila = $resultado -> fetch_array()){
                 array_push($envio, $fila);

@@ -23,10 +23,10 @@
                 <tr>
                     <td><label for="simulador">¿Es un Simulador?</td>
                     <td><input type="checkbox" name="simulador" value="1" /></td>
-                    <td colspan="4"><input type="submit" value="Dar de alta" /></td>
+                    <td colspan="4"><input type="submit" value="Dar de alta" class="ui-button ui-widget ui-corner-all" /></td>
                 </tr>
             </table>
         </fieldset>
     </form>
-    <a href="index.php">Inicio</a>
+    <a href="index.php" class="ui-button ui-widget ui-corner-all" >Inicio</a>
 </section>

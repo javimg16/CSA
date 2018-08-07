@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>PROYECTO CSA - Veronica BG & Javi MG</title>
         <link rel=stylesheet type="text/css" href="Views/CSS/index.css" />
+        <link rel="stylesheet" href="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.css" >
     </head>
     <body>
         <header>
@@ -16,7 +17,7 @@
             </div>
             <div class="categoria">
                 <a><?php echo ($_SESSION['tipo']) ?></a>
-                <a href="index.php?accion=desconectar">Desconectar</a>
+                <a href="index.php?accion=desconectar" class="ui-button ui-widget ui-corner-all" >Desconectar</a>
             </div>
             <hr>
         </header>
