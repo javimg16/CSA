@@ -171,5 +171,26 @@ class Personal {
             echo $ex;
         }
     }
+    
+    function datosPersonales(){
+        try {
+            $conexion = Conexiones::getConexion();
+            $consulta = "SELECT DNI, Nombre, Apellidos, FecAlta, Funcion FROM personal "
+                ."WHERE DNI = ?";
+            $stmt = $conexion -> prepare($consulta);
+            $dni = $this -> getDni();
+            $stmt -> bind_param('s', $dni);
+            $stmt -> execute();
+            $resultado = $stmt -> get_result();
+            while($datos = $resultado -> fetch_object()){
+                $this -> setNombre($datos -> Nombre);
+                $this -> setApellidos($datos -> Apellidos);
+                $this -> setFuncion($datos -> Funcion);
+                $this -> setFecAlta($datos -> FecAlta);
+            }
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+    }
 }
 ?>

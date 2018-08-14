@@ -8,6 +8,26 @@ and open the template in the editor.
     Author     : Javi
 */
 
+.logo {
+    float: left;
+    height: 40px;
+}
+
+.titulo {
+    width: 900px;
+    margin: 0 auto;
+    font: 20px arial;
+    text-align: center;
+    float: left;
+}
+.categoria {
+    
+    float: right;
+}
+hr{
+    position: relative;
+    clear: both;
+}
 body {
     background-color: #ffffbf;
     font-family: arial;
@@ -46,6 +66,7 @@ body {
 .menu ul li a:hover + ul, .menu ul li ul:hover {
     display: block;
     position: fixed;
+    z-index: 60;
 }
 
 
@@ -99,8 +120,24 @@ td, th {
     padding: 5pt;
 }
 
+#botones {
+    width: 135px;
+}
+#botones > button {
+    width: 135px;
+    margin: 5px;
+    overflow: hidden;
+}
+
 #grafica {
-    width: 900px;
-    height: 400px;
-    margin: 100px auto;
+    width: 500px;
+    height: 300px;
+    margin: -100px auto;
+    
+}
+
+#cartilla table {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
 }

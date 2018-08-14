@@ -61,6 +61,7 @@ function busqueda(datos){
         });
         $("#borrar").click(function(){
             $("#mensaje").html("¿Está usted seguro de que desea dar de BORRAR esta persona?");
+            $("#mensaje").removeAttr("title")//.attr("title", "ADVERTENCIA");
             $(function(){
                 $("#mensaje").dialog({
                     resizable: false,
@@ -104,7 +105,8 @@ function busqueda(datos){
                                     if(response == 1){
                                         $("#resultado").removeAttr("style");
                                         $(function(){
-                                            $("#resulOk").html("Borrado realizado con éxito").attr("title", "Realizado");
+                                            $("#resulOk").html("Borrado realizado con éxito");
+                                            $("#resulOk").removeAttr("title").attr("title", "Realizado");
                                             $("#resulOk").dialog({
                                                 modal: true,
                                                 buttons: {
@@ -187,9 +189,30 @@ function busqueda(datos){
     }
 }
 
-
-
+// Cartilla de vuelos
+seleccionarfecha = function(){
+    $("#mensaje").html("<input type=\"date\" id=\"fechacartilla\" />").attr("title", "Seleccione una fecha");
+    $("#mensaje").dialog({
+        modal: true,
+        buttons: {
+            Mostrar: function(){
+                window.open('index.php?opcion=personal'
+                        +'&dni='+$("#dni").val()
+                        +'&accion=cartilla'
+                        +'&fecha='+$("#fechacartilla").val(), '_blank');
+                $(this).dialog("close");
+            },
+            Cancelar: function(){
+                $(this).dialog("close");
+            }
+        }
+    })
+}
 
 $(document).ready(function(){
     $("#buscar").click(peticion);
+    $("#cartilla").click(function(){
+        console.log("cartilla de vuelo pulsado");
+        seleccionarfecha();
+    })
 });

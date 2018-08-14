@@ -14,8 +14,8 @@
                         foreach (Cursos::retriveAll() as $curso => $fila) {
                             print("<tr>");
                             print("<td>".$fila['Modelo']."</td>");
-                            print("<td>".$fila['FecIni']."</td>");
-                            print("<td>".$fila['FecFin']."</td>");
+                            print("<td>".date_format(date_create($fila['FecIni']), "d-m-Y")."</td>");
+                            print("<td>".date_format(date_create($fila['FecFin']), "d-m-Y")."</td>");
                             print("<td>".$fila['numAlumnos']."</td>");
                             print("</tr>");
                         }

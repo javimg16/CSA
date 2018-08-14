@@ -50,12 +50,10 @@ $("#anno").click(function () {
 
 function drawChart(datos, titulo) {
     var data = google.visualization.arrayToDataTable(datos);
-
     var options = {
         title: titulo,
         is3D: true,
     };
-
     var chart = new google.visualization.PieChart(document.getElementById('grafica'));
     chart.draw(data, options);
 

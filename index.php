@@ -99,7 +99,11 @@ else {
                     }
                 } elseif($accion == "busqueda"){
                     include 'Views/Sections/user/personal/busqueda.php';
-                } 
+                } elseif($accion == "cartilla"){
+                    include 'Controllers/user/cartilla.php';
+                } elseif($accion == "imprimir"){
+                    include 'Controllers/user/imprimir.php';
+                }
             } 
             /* helicópteros */
             elseif ($_REQUEST['opcion'] == "helicopteros") {

@@ -5,6 +5,9 @@
         <button id="anno" class="ui-button ui-widget ui-corner-all">Por Año</button>
     </div>
     <div id="grafica"></div>
+    <div id="inicio">
+        <a href="index.php" class="ui-button ui-widget ui-corner-all">Inicio</a>
+    </div>
 </section>
 <script src="Libreries/jquery/jquery-3.2.1.min.js"></script>
 <script src="Libreries/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>

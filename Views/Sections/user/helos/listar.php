@@ -17,7 +17,7 @@
                             print("<tr>");
                             print("<td>".$fila['Matricula']."</td>");
                             print("<td>".$fila['Modelo']."</td>");
-                            print("<td>".$fila['FecAlta']."</td>");
+                            print("<td>".date_format(date_create($fila['FecAlta']), "d-m-Y")."</td>");
                             print("<td>".$fila['FecBaja']."</td>");
                             print("<td>".$fila['SUM(vu.Tiempo)']."</td>");
                             print("<td>".$fila['Simulador']."</td>");

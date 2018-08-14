@@ -8,10 +8,9 @@
     </head>
     <body>
         <header>
-            <div class="logo">
-
+            <div >
+                <img src="Views/Images/Logo.png" class="logo"/>
             </div>
-
             <div class="titulo">
                 PROYECTO CSA
             </div>
