@@ -18,8 +18,8 @@
         }
         
         function Header(){
-            $imagen = './Views/Images/Logo2.png';
-            $this -> Image($imagen, 10, 5, 40, 19);
+            //$imagen = './Views/Images/Logo2.png';
+            //$this -> Image($imagen, 10, 5, 40, 19);
             $this ->SetFont("arial", "B", 14);
             $this ->Cell(40, 5, '', 0, 0, 'C');
             $this ->Cell(100, 10, utf8_decode($this -> nombre.' '.$this -> apellidos

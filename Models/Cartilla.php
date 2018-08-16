@@ -56,7 +56,8 @@ class Cartilla extends Personal {
                 ."GROUP BY helicopteros.Modelo, vuelos_personal.DNI";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
-            $stmt -> bind_param('ssss', $dni, $this -> fecha, $this -> fecha, $this -> fecha);
+            $fecha = $this -> fecha;
+            $stmt -> bind_param('ssss', $dni, $fecha, $fecha, $fecha);
             $stmt -> execute();
             $resultado = $stmt -> get_result();
             while ($fila = $resultado ->fetch_object()){
@@ -74,11 +75,12 @@ class Cartilla extends Personal {
             $consulta = "SELECT SUM(vuelos.Tiempo) AS Suma, helicopteros.Modelo "
                 ."FROM vuelos, helicopteros, vuelos_personal WHERE vuelos.Matricula = helicopteros.Matricula "
                 ."AND vuelos_personal.NumRegistro = vuelos.NumRegistro AND vuelos_personal.DNI = ? "
-                ."AND YEAR(vuelos.FecVuelo) = YEAR(?) GROUP BY helicopteros.Modelo, vuelos_personal.DNI";
+                ."AND vuelos.FecVuelo BETWEEN date_format(?, 'Y-01-01') AND ? "
+                ."GROUP BY helicopteros.Modelo, vuelos_personal.DNI";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
             $fecha = $this -> fecha;
-            $stmt -> bind_param('ss', $dni, $fecha);
+            $stmt -> bind_param('sss', $dni, $fecha, $fecha);
             $stmt -> execute();
             $resultado = $stmt -> get_result();
             while ($fila = $resultado ->fetch_object()){
@@ -102,7 +104,9 @@ class Cartilla extends Personal {
                 ."GROUP BY helicopteros.Modelo, vuelos_personal.DNI";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
-            $stmt -> bind_param('sss', $dni, $this -> fecAlta, $this -> fecha);
+            $fecAlta = $this -> fecAlta;
+            $fecha = $this -> fecha;
+            $stmt -> bind_param('sss', $dni, $fecAlta, $fecha);
             $stmt -> execute();
             $resultado = $stmt -> get_result();
             while ($fila = $resultado -> fetch_object()){
@@ -126,7 +130,8 @@ class Cartilla extends Personal {
                 ."GROUP BY vuelos.Modalidad";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
-            $stmt -> bind_param('ssss', $dni, $this -> fecha, $this -> fecha, $this -> fecha);
+            $fecha = $this -> fecha;
+            $stmt -> bind_param('ssss', $dni, $fecha, $fecha, $fecha);
             $stmt -> execute();
             $resultados = $stmt -> get_result();
             while ($fila = $resultados -> fetch_object()){
@@ -145,11 +150,12 @@ class Cartilla extends Personal {
                 ."FROM vuelos, vuelos_personal "
                 ."WHERE vuelos_personal.NumRegistro = vuelos.NumRegistro "
                     ."AND vuelos_personal.DNI = ? "
-                    ."AND YEAR(vuelos.FecVuelo) = YEAR(?) "
+                    ."AND vuelos.FecVuelo BETWEEN date_format(?, 'Y-01-01') AND ? "
                 ."GROUP BY vuelos.Modalidad";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
-            $stmt -> bind_param('ss', $dni, $this -> fecha);
+            $fecha = $this ->  fecha;
+            $stmt -> bind_param('sss', $dni, $fecha, $fecha );
             $stmt -> execute();
             $resultados = $stmt -> get_result();
             while ($fila = $resultados -> fetch_object()){
@@ -171,7 +177,9 @@ class Cartilla extends Personal {
                 ."GROUP BY vuelos.Modalidad";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
-            $stmt -> bind_param('sss', $dni, $this -> fecAlta, $this -> fecha);
+            $fecAlta = $this -> fecAlta;
+            $fecha = $this -> fecha;
+            $stmt -> bind_param('sss', $dni, $fecAlta, $fecha);
             $stmt -> execute();
             $resultados = $stmt -> get_result();
             while ($fila = $resultados -> fetch_object()){
@@ -195,7 +203,8 @@ class Cartilla extends Personal {
                 ."GROUP BY vuelos.Zona";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
-            $stmt -> bind_param('ssss', $dni, $this -> fecha, $this -> fecha, $this -> fecha);
+            $fecha = $this -> fecha;
+            $stmt -> bind_param('ssss', $dni, $fecha, $fecha, $fecha);
             $stmt -> execute();
             $resultados = $stmt -> get_result();
             while ($fila = $resultados -> fetch_object()){
@@ -214,11 +223,12 @@ class Cartilla extends Personal {
                 ."FROM vuelos, vuelos_personal "
                 ."WHERE vuelos_personal.NumRegistro = vuelos.NumRegistro "
                     ."AND vuelos_personal.DNI = ? "
-                    ."AND YEAR(vuelos.FecVuelo) = YEAR(?) "
+                    ."AND vuelos.FecVuelo BETWEEN date_format(?, 'Y-01-01') AND ? "
                 ."GROUP BY vuelos.Zona";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
-            $stmt -> bind_param('ss', $dni, $this -> fecha);
+            $fecha = $this -> fecha;
+            $stmt -> bind_param('sss', $dni, $fecha, $fecha);
             $stmt -> execute();
             $resultados = $stmt -> get_result();
             while ($fila = $resultados -> fetch_object()){
@@ -240,7 +250,9 @@ class Cartilla extends Personal {
                 ."GROUP BY vuelos.Zona";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
-            $stmt -> bind_param('sss', $dni, $this -> fecAlta, $this -> fecha);
+            $fecAlta = $this -> fecAlta;
+            $fecha = $this -> fecha;
+            $stmt -> bind_param('sss', $dni, $fecAlta, $fecha);
             $stmt -> execute();
             $resultados = $stmt -> get_result();
             while ($fila = $resultados -> fetch_object()){
@@ -265,7 +277,8 @@ class Cartilla extends Personal {
                 ."GROUP BY helicopteros.Simulador, vuelos_personal.DNI";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
-            $stmt -> bind_param('ssss', $dni, $this -> fecha, $this -> fecha, $this -> fecha);
+            $fecha = $this -> fecha;
+            $stmt -> bind_param('ssss', $dni, $fecha, $fecha, $fecha);
             $stmt -> execute();
             $resultado = $stmt -> get_result();
             while ($fila = $resultado ->fetch_object()){
@@ -283,11 +296,12 @@ class Cartilla extends Personal {
             $consulta = "SELECT SUM(vuelos.Tiempo) AS Suma, helicopteros.Simulador "
                 ."FROM vuelos, helicopteros, vuelos_personal WHERE vuelos.Matricula = helicopteros.Matricula "
                 ."AND vuelos_personal.NumRegistro = vuelos.NumRegistro AND vuelos_personal.DNI = ? "
-                ."AND YEAR(vuelos.FecVuelo) = YEAR(?) GROUP BY helicopteros.Simulador, vuelos_personal.DNI";
+                ."AND vuelos.FecVuelo BETWEEN date_format(?, 'Y-01-01') AND ? "
+                ."GROUP BY helicopteros.Simulador, vuelos_personal.DNI";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
             $fecha = $this -> fecha;
-            $stmt -> bind_param('ss', $dni, $fecha);
+            $stmt -> bind_param('sss', $dni, $fecha, $fecha);
             $stmt -> execute();
             $resultado = $stmt -> get_result();
             while ($fila = $resultado ->fetch_object()){
@@ -311,7 +325,9 @@ class Cartilla extends Personal {
                 ."GROUP BY helicopteros.Simulador, vuelos_personal.DNI";
             $stmt = $conexion -> prepare($consulta);
             $dni = $this -> getDni();
-            $stmt -> bind_param('sss', $dni, $this -> fecAlta, $this -> fecha);
+            $fecAlta = $this -> fecAlta;
+            $fecha = $this -> fecha;
+            $stmt -> bind_param('sss', $dni, $fecAlta, $fecha);
             $stmt -> execute();
             $resultado = $stmt -> get_result();
             while ($fila = $resultado -> fetch_object()){

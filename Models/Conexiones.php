@@ -44,5 +44,23 @@ class Conexiones {
         }
     }
     
+    static function recuperarContra($correo){
+        try {
+            $conexion = Conexiones::getConexion();
+            
+            $consulta = "SELECT Password FROM gestores WHERE Correo = ?";
+            $stmt = $conexion -> prepare($consulta);
+            $stmt -> bind_param('s', $correo);
+            $stmt -> execute();
+            $resultado = $stmt -> get_result();
+            if($resultado -> num_rows != 0){
+                $contra = $resultado -> fetch_array();
+                return $contra[0];
+            }             
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+    }
+    
 }
 ?>

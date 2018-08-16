@@ -121,12 +121,28 @@ class Helicopteros {
         try {
             $conexion = Conexiones::getConexion();
             $consulta = "SELECT he.Matricula, he.Modelo, he.FecAlta, he.FecBaja, "
-                ."SUM(vu.Tiempo), he.Simulador FROM helicopteros he, vuelos vu "
+                ."SUM(vu.Tiempo) AS Tiempo, he.Simulador FROM helicopteros he, vuelos vu "
                 ."WHERE he.Matricula = vu.Matricula GROUP BY he.Matricula";
             $stmt = $conexion -> prepare($consulta);
             $stmt -> execute();
+            $listado = array();
             $resultado = $stmt -> get_result();
-            return $resultado;
+            while ($fila = $resultado -> fetch_object()){
+                $helo = array();
+                if($fila -> Simulador == 1){
+                    $fila -> Simulador = "SI";
+                } else {
+                    $fila -> Simulador = "NO";
+                }
+                $fila -> FecAlta = date_format(date_create($fila -> FecAlta), "d-m-Y");
+                if($fila -> FecBaja != null){
+                    $fila -> FecBaja = date_format(date_create($fila -> FecBaja), "d-m-Y");
+                }
+                array_push($helo, $fila -> Matricula, $fila -> Modelo, $fila -> FecAlta, 
+                    $fila -> FecBaja, $fila -> Tiempo, $fila -> Simulador);
+                array_push($listado, $helo);
+            }
+            return $listado;
         } catch (Exception $ex) {
             echo $ex;
         }

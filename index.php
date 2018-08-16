@@ -11,7 +11,7 @@ if (!isset($_SESSION['tipo'])) {
     } else {
         include 'Views/Sections/Login/login.php';
         if (isset($_REQUEST['login'])) {
-            include_once 'Controllers/comprobar.php';
+            include_once 'Controllers/login.php';
         }
     }
 } 
