@@ -17,11 +17,11 @@
                 </tr>
                 <tr>
                     <td><label>Correo</label></td>
-                    <td colspan="3"><input type="text" name="correo" size="60"/></td>
+                    <td colspan="3"><input type="text" name="correo" id="correo" size="60"/></td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="Modificar" id="modificar"/></td>
-                    <td><input type="button" value="Eliminar" id="eliminar"/></td>
+                    <td><input type="button" value="Modificar" id="modificar"  class="ui-button ui-widget ui-corner-all"/></td>
+                    <td><input type="button" value="Eliminar" id="eliminar" class="ui-button ui-widget ui-corner-all"/></td>
                 </tr>
             </table>
         </fieldset>
